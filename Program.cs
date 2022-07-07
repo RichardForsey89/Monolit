@@ -18,8 +18,35 @@ CultureInfo ci = new CultureInfo("ru-RU");
 Console.OutputEncoding = System.Text.Encoding.Unicode;
 Console.WriteLine(ci.DisplayName + " - currency symbol: " + ci.NumberFormat.CurrencySymbol);
 
-// Setup of all the inputs from the JSONs
+// Setup of the input from the JSONs
 Database database = Database.FromFile("bsg-data.json", false);
+
+// Split the DB between mods and weapons
+IEnumerable<Item> AllMods = database.GetItems(m => m is WeaponMod);
+IEnumerable<Item> AllWeapons = database.GetItems(m => m is Weapon);
+
+// Setup the filters for things that I don't think are relevant, but we also remove the Mounts so they can be added in clean later
+Type[] ModsFilter = 
+    { typeof(IronSight), typeof(CompactCollimator), typeof(Collimator),
+      typeof(OpticScope), typeof(NightVision), typeof(ThermalVision),
+      typeof(AssaultScope), typeof(SpecialScope),
+      typeof(CombTactDevice), typeof(Flashlight), typeof(LaserDesignator),
+      typeof(Mount)};
+
+// Apply that filter
+var FilteredMods = AllMods.Where(mod => !ModsFilter.Contains(mod.GetType())).ToList();
+
+// Get the mounts from AllMods into a list, filter it to be only the mounts we want (for foregrips) and add them back to FilteredMods
+IEnumerable<Mount> Mounts = AllMods.Where(mod => mod.GetType() == typeof(Mount)).Cast<Mount>();
+var MountsFiltered = Mounts.Where(mod => mod.Slots.Any(slot=> slot.Name == "mod_foregrip")).Cast<Item>().ToArray();
+FilteredMods.AddRange(MountsFiltered);
+
+//var result = AllMods.Where(mod => mod is MuzzleDevice).Cast<Item>().ToArray();
+//Console.WriteLine(result);
+
+Environment.Exit(0);
+
+
 Database GunsDB = Database.FromFile("bsg-data.json", false);
 
 database = database.Filter(x => x is WeaponMod);
