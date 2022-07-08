@@ -25,6 +25,7 @@ Database database = Database.FromFile("bsg-data.json", false);
 IEnumerable<Item> AllMods = database.GetItems(m => m is WeaponMod);
 IEnumerable<Item> AllWeapons = database.GetItems(m => m is Weapon);
 
+
 // Setup the filters for things that I don't think are relevant, but we also remove the Mounts so they can be added in clean later
 Type[] ModsFilter = 
     { typeof(IronSight), typeof(CompactCollimator), typeof(Collimator),
@@ -37,7 +38,7 @@ Type[] ModsFilter =
 var FilteredMods = AllMods.Where(mod => !ModsFilter.Contains(mod.GetType())).ToList();
 
 // Get the mounts from AllMods into a list, filter it to be only the mounts we want (for foregrips) and add them back to FilteredMods
-IEnumerable<Mount> Mounts = AllMods.Where(mod => mod.GetType() == typeof(Mount)).Cast<Mount>();
+IEnumerable<Mount> Mounts = AllMods.OfType<Mount>();
 var MountsFiltered = Mounts.Where(mod => mod.Slots.Any(slot=> slot.Name == "mod_foregrip")).Cast<Item>().ToArray();
 FilteredMods.AddRange(MountsFiltered);
 
