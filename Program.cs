@@ -20,6 +20,8 @@ var data = new Dictionary<string, string>()
     {"query", "{traders(lang:en){ id name levels{ id level requiredReputation requiredPlayerLevel cashOffers{ item{ id name } priceRUB currency price }}}}" }
 };
 
+string traders;
+
 using (var httpClient = new HttpClient())
 {
 
@@ -30,13 +32,42 @@ using (var httpClient = new HttpClient())
     var responseContent = await httpResponse.Content.ReadAsStringAsync();
 
     //Write response
-    var temp = JToken.Parse(responseContent).ToString();
+    traders = JToken.Parse(responseContent).ToString();
 
     using (StreamWriter writetext = new StreamWriter("C:\\Users\\richa\\source\\repos\\TarkovToy\\Data\\traders.json"))
     {
-        writetext.Write(temp);
+        writetext.Write(traders);
     }
+}
 
+JObject o = JObject.Parse(traders);
+
+//var filtering = o.SelectTokens("$['data']['traders'][0]['levels'][1]['cashOffers'][*]['item']['id']").ToList();
+
+/* I decided to use JSONpaths fed into the SelectTokens() method as it is reasonably readable, and string interpolation will allow for flexibility. Useful links:
+ * https://www.newtonsoft.com/json/help/html/QueryJsonSelectTokenJsonPath.htm
+ * https://goessner.net/articles/JsonPath/index.html#e2
+ * https://stackoverflow.com/questions/38021032/multiple-filters-in-jsonpath
+ * https://jsonpath.com/ <-This one is extremely helpful if you need to experiment
+ */
+
+string[] traderNames =
+    {
+      "Prapor", "Therapist", "Fence", "Skier",
+      "Peacekeeper","Mechanic", "Ragman", "Jaeger"
+    };
+int[] traderLevels = { 1 };
+
+List<string> traderMask = new List<string>();
+
+foreach (string traderName in traderNames)
+{
+    foreach (int traderLevel in traderLevels)
+    {
+        string searchJSONpath = $"$.data.traders.[?(@.name=='{traderName}')].levels.[?(@.level=={traderLevel})].cashOffers.[*].item.id";
+        var filtering = o.SelectTokens(searchJSONpath).ToList();
+        filtering.ForEach(x => traderMask.Add(x.ToString()));
+    }
 }
 
 CultureInfo ci = new CultureInfo("ru-RU");
@@ -67,8 +98,10 @@ IEnumerable<Mount> Mounts = AllMods.OfType<Mount>();
 var MountsFiltered = Mounts.Where(mod => mod.Slots.Any(slot=> slot.Name == "mod_foregrip")).Cast<Item>().ToArray();
 FilteredMods.AddRange(MountsFiltered);
 
-//var result = AllMods.Where(mod => mod is MuzzleDevice).Cast<Item>().ToArray();
-//Console.WriteLine(result);
+// Apply the traders mask
+FilteredMods = FilteredMods.FindAll(x => traderMask.Contains(x.Id));
+
+Console.WriteLine(FilteredMods.Count);
 
 Environment.Exit(0);
 
