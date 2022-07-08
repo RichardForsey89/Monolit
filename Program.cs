@@ -15,42 +15,56 @@ using TarkovToy.ExtensionMethods;
 using System.Globalization;
 using System.Diagnostics;
 
-var data = new Dictionary<string, string>()
+
+
+CultureInfo ci = new CultureInfo("ru-RU");
+Console.OutputEncoding = System.Text.Encoding.Unicode;
+Console.WriteLine(ci.DisplayName + " - currency symbol: " + ci.NumberFormat.CurrencySymbol);
+
+var data_traders = new Dictionary<string, string>()
 {
     {"query", "{traders(lang:en){ id name levels{ id level requiredReputation requiredPlayerLevel cashOffers{ item{ id name } priceRUB currency price }}}}" }
 };
 
-string traders;
+var data_baseAttachments = new Dictionary<string, string>()
+{
+    {"query", "{ items(categoryNames: Weapon) { id name containsItems { item { id name } } } }" }
+};
+
+
+JObject TradersJSON;
+JObject BaseAttachmentsJSON;
 
 using (var httpClient = new HttpClient())
 {
 
     //Http response message
-    var httpResponse = await httpClient.PostAsJsonAsync("https://api.tarkov.dev/graphql", data);
+    var httpResponse = await httpClient.PostAsJsonAsync("https://api.tarkov.dev/graphql", data_traders);
+    var httpResponse2 = await httpClient.PostAsJsonAsync("https://api.tarkov.dev/graphql", data_baseAttachments);
 
     //Response content
     var responseContent = await httpResponse.Content.ReadAsStringAsync();
+    var responseContent2 = await httpResponse2.Content.ReadAsStringAsync();
 
-    //Write response
-    traders = JToken.Parse(responseContent).ToString();
+    //Parse response
+    TradersJSON = JObject.Parse(responseContent);
+    BaseAttachmentsJSON = JObject.Parse(responseContent2);
 
-    using (StreamWriter writetext = new StreamWriter("C:\\Users\\richa\\source\\repos\\TarkovToy\\Data\\traders.json"))
+    using (StreamWriter writetext = new StreamWriter("C:\\Users\\richa\\source\\repos\\TarkovToy\\Data\\BaseAttachments.json"))
     {
-        writetext.Write(traders);
+        writetext.Write(BaseAttachmentsJSON);
     }
 }
-
-JObject o = JObject.Parse(traders);
-
-//var filtering = o.SelectTokens("$['data']['traders'][0]['levels'][1]['cashOffers'][*]['item']['id']").ToList();
 
 /* I decided to use JSONpaths fed into the SelectTokens() method as it is reasonably readable, and string interpolation will allow for flexibility. Useful links:
  * https://www.newtonsoft.com/json/help/html/QueryJsonSelectTokenJsonPath.htm
  * https://goessner.net/articles/JsonPath/index.html#e2
  * https://stackoverflow.com/questions/38021032/multiple-filters-in-jsonpath
+ * https://docs.hevodata.com/sources/streaming/rest-api/writing-jsonpath-expressions/
  * https://jsonpath.com/ <-This one is extremely helpful if you need to experiment
  */
 
+// TRADER INFO STUFF =========================================
 string[] traderNames =
     {
       "Prapor", "Therapist", "Fence", "Skier",
@@ -65,14 +79,29 @@ foreach (string traderName in traderNames)
     foreach (int traderLevel in traderLevels)
     {
         string searchJSONpath = $"$.data.traders.[?(@.name=='{traderName}')].levels.[?(@.level=={traderLevel})].cashOffers.[*].item.id";
-        var filtering = o.SelectTokens(searchJSONpath).ToList();
+        var filtering = TradersJSON.SelectTokens(searchJSONpath).ToList();
         filtering.ForEach(x => traderMask.Add(x.ToString()));
     }
 }
 
-CultureInfo ci = new CultureInfo("ru-RU");
-Console.OutputEncoding = System.Text.Encoding.Unicode;
-Console.WriteLine(ci.DisplayName + " - currency symbol: " + ci.NumberFormat.CurrencySymbol);
+
+// BASE WEAPON BUNDLES  =========================================
+Dictionary<string,List<string>> BaseWeaponBundles = new();
+
+var weaponIDs =
+    from c in BaseAttachmentsJSON["data"]["items"].Distinct()
+    select (string)c["id"];
+
+foreach (var id in weaponIDs)
+{
+    string searchJSONpath_BWB = $"$.data.items.[?(@.id=='{id}')]..item.id";
+    var result = BaseAttachmentsJSON.SelectTokens(searchJSONpath_BWB).ToList();
+
+    List<string> containedIDs = new ();
+    foreach (var item in result) { containedIDs.Add(item.ToString()); }
+    
+    BaseWeaponBundles.Add(id, containedIDs);
+}
 
 // Setup of the input from the JSONs
 Database database = Database.FromFile("bsg-data.json", false);
@@ -81,6 +110,20 @@ Database database = Database.FromFile("bsg-data.json", false);
 IEnumerable<Item> AllMods = database.GetItems(m => m is WeaponMod);
 IEnumerable<Item> AllWeapons = database.GetItems(m => m is Weapon);
 
+// Add the basic attachments to the weapons
+List<Weapon> processedWeapons = AllWeapons.OfType<Weapon>().ToList();
+foreach (var pair in BaseWeaponBundles)
+{
+    Weapon temp = processedWeapons.FirstOrDefault(x => x.Id == pair.Key);
+    if (temp != null)
+    {
+        temp = Recursion.addBaseAttachments(temp, pair.Value, AllMods.OfType<WeaponMod>());
+        int index = processedWeapons.FindIndex(x => x.Id == temp.Id);
+        processedWeapons.RemoveAt(index);
+        processedWeapons.Add(temp);
+    }
+    
+}
 
 // Setup the filters for things that I don't think are relevant, but we also remove the Mounts so they can be added in clean later
 Type[] ModsFilter = 
@@ -98,70 +141,27 @@ IEnumerable<Mount> Mounts = AllMods.OfType<Mount>();
 var MountsFiltered = Mounts.Where(mod => mod.Slots.Any(slot=> slot.Name == "mod_foregrip")).Cast<Item>().ToArray();
 FilteredMods.AddRange(MountsFiltered);
 
-// Apply the traders mask
+Console.WriteLine("Num of mods: " + FilteredMods.Count());
+Console.WriteLine("Num of guns: " + AllWeapons.Count());
+
+// Apply the traders' mask
 FilteredMods = FilteredMods.FindAll(x => traderMask.Contains(x.Id));
+var FilteredGuns = processedWeapons.ToList().FindAll(x => traderMask.Contains(x.Id));
 
-Console.WriteLine(FilteredMods.Count);
+Console.WriteLine("Filt. Mods: " + FilteredMods.Count);
+Console.WriteLine("Filt. Guns: " + FilteredGuns.Count);
 
-Environment.Exit(0);
+// These are just here really to plug in to existing code
+var assaultRifles = FilteredGuns.Where(c => c is AssaultRifle || c is AssaultCarbine || c is Smg).ToList();
+var mods = FilteredMods.OfType<WeaponMod>();
 
+List<Weapon> ergos = new List<Weapon>();
+List<Weapon> recoils = new List<Weapon>();
 
-Database GunsDB = Database.FromFile("bsg-data.json", false);
-
-database = database.Filter(x => x is WeaponMod);
-IEnumerable<WeaponMod> items = database.GetItems(m => m is WeaponMod).Cast<WeaponMod>();
-
-string[] shitlist = { "RatStash.Collimator", "RatStash.CompactCollimator", "RatStash.CombTactDevice", "RatStash.OpticScope", "RatStash.NightVision", "RatStash.Flashlight", "RatStash.SpecialScope", "RatStash.ThermalVision", "RatStash.IronSight" };
-string[] shitlist2 = { "Geissele Super Precision 30mm ring scope mount", "TROY QARS 4.2 inch rail", "Vltor CASV KeyMod 2 inch rail", "Vltor CASV KeyMod 4 inch rail", "Geissele Super Precision 30mm ring scope mount (DDC)",
-    "Axion Kobra dovetail mount", "KMZ 1P59 dovetail mount", "NPZ 1P78-1 dovetail mount", "VOMZ Pilad 043-02 dovetail mount", "Zenit B-13 \"Klassika\" dovetail rail platform", "AR-15 ADAR 2-15 wooden stock", "Alexander Arms 3 inch rail"};
-
-IEnumerable<WeaponMod> names = items.DistinctBy(i => i.GetType());
-
-var res = names.Where(x => !shitlist.Contains(x.GetType().ToString()));
-
-foreach (var item in names)
+foreach (Weapon rifle in assaultRifles)
 {
-    Console.WriteLine(item.GetType().ToString());
-}
-
-Console.WriteLine("");
-
-foreach (var item in res)
-{
-    Console.WriteLine(item.GetType().ToString());
-}
-
-
-var assaultRifles = GunsDB.GetItems(item => item is AssaultRifle).Cast<AssaultRifle>();
-var mods = database.GetItems(m => m is WeaponMod).Cast<WeaponMod>();
-
-mods = mods.Where(x => !shitlist.Contains(x.GetType().ToString())).Cast<WeaponMod>();
-mods = mods.Where(x => !shitlist2.Contains(x.Name)).Cast<WeaponMod>();
-//var mods = res;
-
-
-String[] skippedMods = { "mod_scope", "mod_sight_rear"  };
-
-List<TTMod> TTmods = TTMod.BuildModules(mods);
-
-Console.WriteLine("Num of guns: " + assaultRifles.Count());
-Console.WriteLine("Num of mods: " + mods.Count());
-
-
-IEnumerable<Item> wMods = items.Where(item => item is WeaponMod);
-IEnumerable<Item> foregrips = items.Where(item => item is Foregrip);
-IEnumerable<Item> muzzleDevices = items.Where(item => item is MuzzleDevice);
-IEnumerable<Item> gasBlocks = items.Where(item => item is GasBlock);
-IEnumerable<Item> essentials = items.Where(item => item is EssentialMod);
-IEnumerable<Item> stocks = items.Where(item => item is Stock);
-
-List<AssaultRifle> ergos = new List<AssaultRifle>();
-List<AssaultRifle> recoils = new List<AssaultRifle>();
-
-foreach (AssaultRifle rifle in assaultRifles)
-{
-    AssaultRifle assaultRifle_e = (AssaultRifle)MyExtensions.recursiveFitErgoWeapon2(rifle, mods).recursiveRemoveEmptyMount();
-    AssaultRifle assaultRifle_r = (AssaultRifle)MyExtensions.recursiveFitRecoilWeapon2(rifle, mods).recursiveRemoveEmptyMount();
+    Weapon assaultRifle_e = (Weapon)MyExtensions.recursiveFitErgoWeapon2(rifle, mods).recursiveRemoveEmptyMount();
+    Weapon assaultRifle_r = (Weapon)MyExtensions.recursiveFitRecoilWeapon2(rifle, mods).recursiveRemoveEmptyMount();
 
     ergos.Add(assaultRifle_e);
     recoils.Add(assaultRifle_r);
@@ -172,25 +172,25 @@ recoils = recoils.OrderBy(x => MyExtensions.recursiveRecoilWeapon(x)).ToList();
 
 Console.WriteLine("");
 Console.WriteLine("");
+Console.WriteLine("==== ERGO ====");
+Console.WriteLine("");
 
-for (int i = 0; i < 5; i++)
+var printListErgos = ergos.Take(10).ToList();
+foreach (var rifle in printListErgos)
 {
-    MyExtensions.recursivePrint(ergos[i]);
-    Console.WriteLine("New Ergo: " + MyExtensions.recursiveErgoWeapon(ergos[i]));
-    Console.WriteLine("New Recoil: " + MyExtensions.recursiveRecoilWeapon(ergos[i]));
-    Console.WriteLine("Total Cost: " + MyExtensions.recursivePriceWeapon(ergos[i]).ToString("C", ci));
-    Console.WriteLine("");
+    MyExtensions.recursivePrint(rifle);
 }
 
 Console.WriteLine("");
 Console.WriteLine("");
+Console.WriteLine("==== RECOIL ====");
+Console.WriteLine("");
 
-for (int i = 0; i < 5; i++)
+
+var printListRecoils = recoils.Take(10).ToList();
+foreach (var rifle in printListRecoils)
 {
-    MyExtensions.recursivePrint(recoils[i]);
-    Console.WriteLine("New Ergo: " + MyExtensions.recursiveErgoWeapon(recoils[i]));
-    Console.WriteLine("New Recoil: " + MyExtensions.recursiveRecoilWeapon(recoils[i]));
-    Console.WriteLine("Total Cost: " + MyExtensions.recursivePriceWeapon(recoils[i]).ToString("C", ci));
+    MyExtensions.recursivePrint(rifle);
     Console.WriteLine("");
 }
 

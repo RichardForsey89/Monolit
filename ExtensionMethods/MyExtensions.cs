@@ -7,9 +7,56 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using RatStash;
 using System.Collections;
+using System.Globalization;
+
+
 
 namespace TarkovToy.ExtensionMethods
 {
+    public static class API_ExtensionMethods
+    {
+        //TODO: setup some of these
+    }
+
+    public static class Recursion
+    {
+        public static Weapon addBaseAttachments(this Weapon weapon, List<string> baseAttachments, IEnumerable<WeaponMod> mods)
+        {
+            List<WeaponMod> attachmentsList = mods.Where(x => baseAttachments.Contains(x.Id)).ToList();
+
+            foreach (var slot in weapon.Slots)
+            {
+                var loopSlot = slot;
+                loopSlot.ParentItem = weapon;
+                loopSlot = addBaseModRecursive(loopSlot, ref attachmentsList);
+            }
+
+            return weapon;
+        }
+
+        private static Slot addBaseModRecursive(this Slot slot, ref List<WeaponMod> attachmentsList)
+        {
+            var filter = slot.Filters[0].Whitelist;
+            var candidate = attachmentsList.Find(x => filter.Contains(x.Id));
+            if(candidate != null)
+            {
+                //attachmentsList.Remove(candidate); // Possibly don't need this, but nyeeh
+                if(candidate.Slots.Count > 0)
+                    foreach(Slot slot2 in candidate.Slots)
+                    {
+                        var loop2slot = slot2;
+                        loop2slot.ParentItem = candidate;
+                        loop2slot = addBaseModRecursive(slot2, ref attachmentsList);
+                    }
+                slot.ContainedItem = candidate;
+                
+            }
+            
+            return slot;
+        }
+
+    }
+
     public static class MyExtensions
     {
         public static T DeepClone<T>(this T obj)
@@ -529,6 +576,11 @@ namespace TarkovToy.ExtensionMethods
             {
                 recursivePrintBySlots(slot);
             }
+
+            Console.WriteLine("New Ergo: " + MyExtensions.recursiveErgoWeapon(obj));
+            Console.WriteLine("New Recoil: " + MyExtensions.recursiveRecoilWeapon(obj));
+            Console.WriteLine("Total Cost: " + MyExtensions.recursivePriceWeapon(obj).ToString("C", new CultureInfo("ru-RU")));
+            Console.WriteLine("");
 
         }
 
