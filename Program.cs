@@ -13,6 +13,31 @@ using System.Collections.Generic;
 using System.Collections;
 using TarkovToy.ExtensionMethods;
 using System.Globalization;
+using System.Diagnostics;
+
+var data = new Dictionary<string, string>()
+{
+    {"query", "{traders(lang:en){ id name levels{ id level requiredReputation requiredPlayerLevel cashOffers{ item{ id name } priceRUB currency price }}}}" }
+};
+
+using (var httpClient = new HttpClient())
+{
+
+    //Http response message
+    var httpResponse = await httpClient.PostAsJsonAsync("https://api.tarkov.dev/graphql", data);
+
+    //Response content
+    var responseContent = await httpResponse.Content.ReadAsStringAsync();
+
+    //Write response
+    var temp = JToken.Parse(responseContent).ToString();
+
+    using (StreamWriter writetext = new StreamWriter("C:\\Users\\richa\\source\\repos\\TarkovToy\\Data\\traders.json"))
+    {
+        writetext.Write(temp);
+    }
+
+}
 
 CultureInfo ci = new CultureInfo("ru-RU");
 Console.OutputEncoding = System.Text.Encoding.Unicode;
