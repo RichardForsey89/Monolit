@@ -69,7 +69,7 @@ string[] traderNames =
       "Prapor", "Therapist", "Fence", "Skier",
       "Peacekeeper","Mechanic", "Ragman", "Jaeger"
     };
-int[] traderLevels = { 1 };
+int[] traderLevels = { 1, 2 };
 
 List<string> traderMask = new List<string>();
 
@@ -116,7 +116,7 @@ foreach (var pair in BaseWeaponBundles)
     Weapon temp = processedWeapons.FirstOrDefault(x => x.Id == pair.Key);
     if (temp != null)
     {
-        temp = Recursion.addBaseAttachments(temp, pair.Value, AllMods.OfType<WeaponMod>());
+        temp = Recursion.addBaseAttachmentsFlat(temp, pair.Value, AllMods.OfType<WeaponMod>());
         int index = processedWeapons.FindIndex(x => x.Id == temp.Id);
         processedWeapons.RemoveAt(index);
         processedWeapons.Add(temp);
@@ -154,13 +154,14 @@ Console.WriteLine("Filt. Guns: " + FilteredGuns.Count);
 var assaultRifles = FilteredGuns.Where(c => c is AssaultRifle || c is AssaultCarbine || c is Smg).ToList();
 var mods = FilteredMods.OfType<WeaponMod>();
 
-List<Weapon> ergos = new List<Weapon>();
-List<Weapon> recoils = new List<Weapon>();
+List<Weapon> ergos = new ();
+List<Weapon> recoils = new ();
 
 foreach (Weapon rifle in assaultRifles)
 {
-    Weapon assaultRifle_e = (Weapon)MyExtensions.recursiveFitErgoWeapon2(rifle, mods).recursiveRemoveEmptyMount();
-    Weapon assaultRifle_r = (Weapon)MyExtensions.recursiveFitRecoilWeapon2(rifle, mods).recursiveRemoveEmptyMount();
+    Weapon assaultRifle_e = (Weapon)Recursion.recursiveFit((CompoundItem) rifle, mods, "ergo");
+
+    Weapon assaultRifle_r = (Weapon)Recursion.recursiveFit((CompoundItem) rifle, mods, "recoil");
 
     ergos.Add(assaultRifle_e);
     recoils.Add(assaultRifle_r);
@@ -174,7 +175,7 @@ Console.WriteLine("");
 Console.WriteLine("==== ERGO ====");
 Console.WriteLine("");
 
-var printListErgos = ergos.Take(10).ToList();
+var printListErgos = ergos.Take(4).ToList();
 foreach (var rifle in printListErgos)
 {
     MyExtensions.recursivePrint(rifle);
@@ -186,7 +187,7 @@ Console.WriteLine("==== RECOIL ====");
 Console.WriteLine("");
 
 
-var printListRecoils = recoils.Take(10).ToList();
+var printListRecoils = recoils.Take(4).ToList();
 foreach (var rifle in printListRecoils)
 {
     MyExtensions.recursivePrint(rifle);

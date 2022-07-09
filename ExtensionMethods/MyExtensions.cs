@@ -20,6 +20,7 @@ namespace TarkovToy.ExtensionMethods
 
     public static class Recursion
     {
+        // Depreciated
         public static Weapon addBaseAttachments(this Weapon weapon, List<string> baseAttachments, IEnumerable<WeaponMod> mods)
         {
             List<WeaponMod> attachmentsList = mods.Where(x => baseAttachments.Contains(x.Id)).ToList();
@@ -28,31 +29,122 @@ namespace TarkovToy.ExtensionMethods
             {
                 var loopSlot = slot;
                 loopSlot.ParentItem = weapon;
-                loopSlot = addBaseModRecursive(loopSlot, ref attachmentsList);
+                loopSlot = addBaseModRecursive(loopSlot, attachmentsList);
             }
+            var test = accumulateMods(weapon.Slots);
 
             return weapon;
         }
-
-        private static Slot addBaseModRecursive(this Slot slot, ref List<WeaponMod> attachmentsList)
+        // Depreciated
+        private static Slot addBaseModRecursive(this Slot slot, List<WeaponMod> attachmentsList)
         {
             var filter = slot.Filters[0].Whitelist;
             var candidate = attachmentsList.Find(x => filter.Contains(x.Id));
             if(candidate != null)
             {
-                //attachmentsList.Remove(candidate); // Possibly don't need this, but nyeeh
                 if(candidate.Slots.Count > 0)
                     foreach(Slot slot2 in candidate.Slots)
                     {
                         var loop2slot = slot2;
                         loop2slot.ParentItem = candidate;
-                        loop2slot = addBaseModRecursive(slot2, ref attachmentsList);
+                        loop2slot = addBaseModRecursive(slot2, attachmentsList);
                     }
                 slot.ContainedItem = candidate;
-                
             }
-            
             return slot;
+        }
+
+        public static Weapon addBaseAttachmentsFlat(this Weapon weapon, List<string> baseAttachments, IEnumerable<WeaponMod> mods)
+        {
+            List<WeaponMod> attachmentsList = mods.Where(x => baseAttachments.Contains(x.Id)).ToList();
+            weapon.Slots = addBaseAttachmentsFlatLoop(weapon.Slots, attachmentsList, weapon);
+            return weapon;
+        }
+
+        private static List<Slot> addBaseAttachmentsFlatLoop(this List<Slot> slots, List<WeaponMod> attachmentsList, Item parent)
+        {
+            // I could cast parent to CompoundItem and make this be Weapon/WeaponMod agnostic and collapse it in to the first method
+            foreach (var slot in slots)
+            {
+                var filter = slot.Filters[0].Whitelist;
+                var candidate = attachmentsList.Find(x => filter.Contains(x.Id));
+                if (candidate != null)
+                {
+                    if (candidate.Slots.Count > 0)
+                        candidate.Slots = addBaseAttachmentsFlatLoop(candidate.Slots, attachmentsList, candidate);
+
+                    slot.ContainedItem = candidate;
+                    slot.ParentItem = parent;
+                }
+            }
+            return slots;
+        }
+
+        public static CompoundItem recursiveFit(CompoundItem CI, IEnumerable<WeaponMod> mods, string mode)
+        {
+            foreach(Slot slot in CI.Slots)
+            {
+                List<WeaponMod> shortList = mods.Where(item => slot.Filters[0].Whitelist.Contains(item.Id)).ToList();
+                if (shortList.Count > 0)
+                {
+                    if (mode.Contains("ergo"))
+                        shortList = shortList.OrderByDescending(x => x.Ergonomics).ToList();
+                    else if (mode.Contains("recoil"))
+                        shortList = shortList.OrderBy(x => x.Recoil).ToList();
+
+                    WeaponMod candidate = shortList.First();
+                    slot.ContainedItem = recursiveFit(candidate, mods, mode);
+                }
+            }
+            return CI;
+        }
+
+        public static List<WeaponMod> accumulateMods(this List<Slot> slots)
+        {
+            List<WeaponMod> attachedMods = new List<WeaponMod>();
+            IEnumerable<Slot> notNulls = slots.Where(x => x.ContainedItem != null);
+
+            foreach (Slot slot in notNulls)
+            {
+                WeaponMod wm = (WeaponMod)slot.ContainedItem;
+                attachedMods.Add(wm);
+                attachedMods.AddRange(accumulateMods(wm.Slots));
+            }
+
+            return attachedMods;
+        }
+
+        public static (int t_price, int t_ergo, float t_recoil) getWeaponTotals(this Weapon w)
+        {
+            var ts = accumulateTotals(w.Slots);
+
+            int finalPrice = w.CreditsPrice + ts.t_price;
+            int finalErgo = w.Ergonomics + ts.t_ergo;
+            float finalRecoil = w.RecoilForceUp + (w.RecoilForceUp * (ts.t_recoil / 100));
+
+            return (finalPrice, finalErgo, finalRecoil) ;
+        }
+
+        public static (int t_price, int t_ergo, float t_recoil) accumulateTotals(this List<Slot> slots)
+        {
+            List<WeaponMod> weaponMods = accumulateMods(slots);
+            return getTotals(weaponMods);
+        }
+
+        public static (int t_price, int t_ergo, float t_recoil) getTotals(List<WeaponMod> weaponMods)
+        {
+            int t_price = 0;
+            int t_ergo = 0;
+            float t_recoil = 0;
+
+            foreach (WeaponMod wm in weaponMods)
+            {
+                t_price += wm.CreditsPrice;
+                t_ergo += (int) wm.Ergonomics; // In a Weapon Ergo is int, so... ¯\_(ツ)_/¯
+                t_recoil += wm.Recoil;
+            }
+
+            return (t_price, t_ergo, t_recoil);
         }
 
     }
@@ -282,7 +374,6 @@ namespace TarkovToy.ExtensionMethods
             return candidate;
         }
 
-
         public static Weapon recursiveFitErgoWeapon(this Weapon obj, IEnumerable<WeaponMod> mods)
         {
             
@@ -387,6 +478,7 @@ namespace TarkovToy.ExtensionMethods
 
             return total;
         }
+        
         public static int recursivePriceWeapon(this Weapon obj)
         {
             int total = 0;
@@ -445,7 +537,6 @@ namespace TarkovToy.ExtensionMethods
             return total;
         }
 
-
         public static float recursiveErgoWeapon(this Weapon obj)
         {
             float total = 0;
@@ -499,7 +590,6 @@ namespace TarkovToy.ExtensionMethods
                     }
                 }
             }
-
             return total;
         }
 
@@ -562,7 +652,6 @@ namespace TarkovToy.ExtensionMethods
             return total;
         }
 
-
         public static void recursivePrint(this Weapon obj)
         {
             Console.WriteLine(obj.Name);
@@ -588,7 +677,7 @@ namespace TarkovToy.ExtensionMethods
         {
             Console.WriteLine("  " + obj.ContainedItem.Name);
             WeaponMod mod = (WeaponMod)obj.ContainedItem;
-            Console.Write("  Ergo: " + mod.Ergonomics);
+            Console.Write("    Ergo: " + mod.Ergonomics);
             Console.Write("  Recoil: " + mod.Recoil);
             Console.WriteLine("  Price: " + mod.CreditsPrice);
 
