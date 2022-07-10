@@ -8,8 +8,27 @@ using System.IO;
 using RatStash;
 using System.Collections;
 using System.Globalization;
+using Newtonsoft.Json.Converters;
+using System.Reflection;
 
+namespace RatStash
+{
+    public class Ext_Ammo : Ammo
+    {
+        [Newtonsoft.Json.JsonProperty("PenetrationPower")]
+        public int PenetrationPower { get; set; }
 
+        public Ext_Ammo(int pen, Ammo ammo)
+        {
+            PropertyInfo[] properties = typeof(Ammo).GetProperties();
+            foreach (PropertyInfo p in properties)
+                if (p.CanRead && p.CanWrite)
+                    p.SetMethod.Invoke(this, new object[] { p.GetMethod.Invoke(ammo, null) });
+
+            PenetrationPower = pen;
+        }
+    }
+}
 
 namespace TarkovToy.ExtensionMethods
 {
@@ -17,6 +36,25 @@ namespace TarkovToy.ExtensionMethods
     {
         //TODO: setup some of these
     }
+
+    public static class Simple
+    {
+        public static (Weapon, Ext_Ammo) selectAmmo(Weapon weapon, List<Ext_Ammo> ammo, string mode)
+        {
+            Ext_Ammo bullet = null;
+            ammo = ammo.FindAll(ammo => ammo.Caliber.Equals(weapon.AmmoCaliber));
+            if (ammo.Count > 0)
+            {
+                if (mode.Equals("damage"))
+                    ammo.OrderByDescending(ammo => ammo.Damage);
+                else if (mode.Equals("penetration"))
+                    ammo.OrderByDescending(ammo => ammo.PenetrationPower);
+                bullet = ammo.First();
+            }
+            return (weapon, bullet);
+        }
+    }
+
 
     public static class Recursion
     {
@@ -56,14 +94,23 @@ namespace TarkovToy.ExtensionMethods
 
         public static Weapon addBaseAttachmentsFlat(this Weapon weapon, List<string> baseAttachments, IEnumerable<WeaponMod> mods)
         {
+            // Update this into a wrapper method, don't need the flat loop method below
+
+
             List<WeaponMod> attachmentsList = mods.Where(x => baseAttachments.Contains(x.Id)).ToList();
-            weapon.Slots = addBaseAttachmentsFlatLoop(weapon.Slots, attachmentsList, weapon);
+            weapon = (Weapon) recursiveFit(weapon, attachmentsList, "base");
+
+            var test = accumulateMods(weapon.Slots);
+
+
+            //weapon.Slots = addBaseAttachmentsFlatLoop(weapon.Slots, attachmentsList, weapon);
             return weapon;
         }
 
         private static List<Slot> addBaseAttachmentsFlatLoop(this List<Slot> slots, List<WeaponMod> attachmentsList, Item parent)
         {
             // I could cast parent to CompoundItem and make this be Weapon/WeaponMod agnostic and collapse it in to the first method
+            // This method is also depreciated
             foreach (var slot in slots)
             {
                 var filter = slot.Filters[0].Whitelist;
@@ -80,6 +127,9 @@ namespace TarkovToy.ExtensionMethods
             return slots;
         }
 
+
+        // TODO: Extend this method to take into account the difference between base mods and potential mods, add combinational sorting, add checks for incompatible items.
+        // Look at the old method where a "batch" of options are made and then chosen from, eg, stocks with rubber pads vs expensive stocks. Implement an efficency grading comparision.
         public static CompoundItem recursiveFit(CompoundItem CI, IEnumerable<WeaponMod> mods, string mode)
         {
             foreach(Slot slot in CI.Slots)
@@ -87,14 +137,16 @@ namespace TarkovToy.ExtensionMethods
                 List<WeaponMod> shortList = mods.Where(item => slot.Filters[0].Whitelist.Contains(item.Id)).ToList();
                 if (shortList.Count > 0)
                 {
-                    if (mode.Contains("ergo"))
+                    if (mode.Equals("ergo"))
                         shortList = shortList.OrderByDescending(x => x.Ergonomics).ToList();
-                    else if (mode.Contains("recoil"))
+                    else if (mode.Equals("recoil"))
                         shortList = shortList.OrderBy(x => x.Recoil).ToList();
 
                     WeaponMod candidate = shortList.First();
+
                     slot.ContainedItem = recursiveFit(candidate, mods, mode);
                 }
+                slot.ParentItem = CI;
             }
             return CI;
         }
@@ -652,23 +704,28 @@ namespace TarkovToy.ExtensionMethods
             return total;
         }
 
-        public static void recursivePrint(this Weapon obj)
+        public static void recursivePrint((Weapon, Ext_Ammo) obj)
         {
-            Console.WriteLine(obj.Name);
-            Console.WriteLine("Ergo: "+obj.Ergonomics);
-            Console.WriteLine("Recoil: "+ obj.RecoilForceUp);
-            Console.WriteLine("Price: "+ obj.CreditsPrice);
+            Console.WriteLine(obj.Item1.Name);
+            Console.WriteLine("Ergo: "+obj.Item1.Ergonomics);
+            Console.WriteLine("Recoil: "+ obj.Item1.RecoilForceUp);
+            Console.WriteLine("Price: "+ obj.Item1.CreditsPrice);
 
-            IEnumerable<Slot> notNulls = obj.Slots.Where(x => x.ContainedItem != null);
+            IEnumerable<Slot> notNulls = obj.Item1.Slots.Where(x => x.ContainedItem != null);
 
             foreach (Slot slot in notNulls)
             {
                 recursivePrintBySlots(slot);
             }
 
-            Console.WriteLine("New Ergo: " + MyExtensions.recursiveErgoWeapon(obj));
-            Console.WriteLine("New Recoil: " + MyExtensions.recursiveRecoilWeapon(obj));
-            Console.WriteLine("Total Cost: " + MyExtensions.recursivePriceWeapon(obj).ToString("C", new CultureInfo("ru-RU")));
+            var cartridge = obj.Item2;
+
+            Console.Write("Bullet: " + cartridge.Name);
+            Console.WriteLine(" Pen: " + cartridge.PenetrationPower + " Damage: " + cartridge.Damage);
+
+            Console.WriteLine("New Ergo: " + MyExtensions.recursiveErgoWeapon(obj.Item1));
+            Console.WriteLine("New Recoil: " + MyExtensions.recursiveRecoilWeapon(obj.Item1));
+            Console.WriteLine("Total Cost: " + MyExtensions.recursivePriceWeapon(obj.Item1).ToString("C", new CultureInfo("ru-RU")));
             Console.WriteLine("");
 
         }

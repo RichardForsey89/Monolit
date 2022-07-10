@@ -30,9 +30,15 @@ var data_baseAttachments = new Dictionary<string, string>()
     {"query", "{ items(categoryNames: Weapon) { id name containsItems { item { id name } } } }" }
 };
 
+var data_AmmoPenetration = new Dictionary<string, string>()
+{
+    {"query", "{ items(categoryNames: Ammo) { id name properties { ... on ItemPropertiesAmmo { penetrationPower } } } }" }
+};
+
 
 JObject TradersJSON;
 JObject BaseAttachmentsJSON;
+JObject AmmoPenetrationJSON;
 
 using (var httpClient = new HttpClient())
 {
@@ -40,18 +46,26 @@ using (var httpClient = new HttpClient())
     //Http response message
     var httpResponse = await httpClient.PostAsJsonAsync("https://api.tarkov.dev/graphql", data_traders);
     var httpResponse2 = await httpClient.PostAsJsonAsync("https://api.tarkov.dev/graphql", data_baseAttachments);
+    var httpResponse3 = await httpClient.PostAsJsonAsync("https://api.tarkov.dev/graphql", data_AmmoPenetration);
 
     //Response content
     var responseContent = await httpResponse.Content.ReadAsStringAsync();
     var responseContent2 = await httpResponse2.Content.ReadAsStringAsync();
+    var responseContent3 = await httpResponse3.Content.ReadAsStringAsync();
 
     //Parse response
     TradersJSON = JObject.Parse(responseContent);
     BaseAttachmentsJSON = JObject.Parse(responseContent2);
+    AmmoPenetrationJSON = JObject.Parse(responseContent3);
 
     using (StreamWriter writetext = new StreamWriter("C:\\Users\\richa\\source\\repos\\TarkovToy\\Data\\BaseAttachments.json"))
     {
         writetext.Write(BaseAttachmentsJSON);
+    }
+
+    using (StreamWriter writetext = new StreamWriter("C:\\Users\\richa\\source\\repos\\TarkovToy\\Data\\AmmoPenetration.json"))
+    {
+        writetext.Write(AmmoPenetrationJSON);
     }
 }
 
@@ -83,7 +97,6 @@ foreach (string traderName in traderNames)
     }
 }
 
-
 // BASE WEAPON BUNDLES  =========================================
 Dictionary<string,List<string>> BaseWeaponBundles = new();
 
@@ -108,6 +121,50 @@ Database database = Database.FromFile("bsg-data.json", false);
 // Split the DB between mods and weapons
 IEnumerable<Item> AllMods = database.GetItems(m => m is WeaponMod);
 IEnumerable<Item> AllWeapons = database.GetItems(m => m is Weapon);
+
+IEnumerable<Item> AllAmmo = database.GetItems(m => m is Ammo);
+
+
+// A janky workaround maybe
+List<string> ammo_IDs = new();
+List<int> ammo_Pens = new();
+Dictionary<string, int> ammo_dict = new();
+
+string searchAmooID = "$.data.items.[*].id";
+string searchAmooPen = "$.data.items.[*]..penetrationPower";
+
+//var ammoIDs =
+//    from c in AmmoPenetrationJSON["data"]["items"].Distinct()
+//    select (string)c["id"];
+
+//var ammoPens =
+//    from c in AmmoPenetrationJSON["data"]["items"].Distinct()
+//    select (string)c["penetrationPower"];
+
+var ammoIDs = AmmoPenetrationJSON.SelectTokens(searchAmooID).ToList();
+var ammoPens = AmmoPenetrationJSON.SelectTokens(searchAmooPen).ToList();
+
+ammoIDs.ToList().ForEach(x => ammo_IDs.Add(x.ToString()));
+ammoPens.ToList().ForEach(x => ammo_Pens.Add(int.Parse(x.ToString())));
+
+for (int i = 0; i < ammo_IDs.Count; i++)
+{
+    ammo_dict.Add(ammo_IDs[i], ammo_Pens[i]);
+}
+
+List<Ext_Ammo> processed_ammo = new();
+
+foreach (var key in ammo_dict.Keys)
+{
+    var patron = AllAmmo.OfType<Ammo>().FirstOrDefault(a => a.Id == key);
+    if (patron != null)
+    {
+        Ext_Ammo boolit = new Ext_Ammo(ammo_dict.GetValueOrDefault(key), patron);
+        processed_ammo.Add(boolit);
+    }
+}
+
+
 
 // Add the basic attachments to the weapons
 List<Weapon> processedWeapons = AllWeapons.OfType<Weapon>().ToList();
@@ -142,33 +199,44 @@ FilteredMods.AddRange(MountsFiltered);
 
 Console.WriteLine("Num of mods: " + FilteredMods.Count());
 Console.WriteLine("Num of guns: " + AllWeapons.Count());
+Console.WriteLine("Num of ammo: " + AllAmmo.Count());
 
 // Apply the traders' mask
 FilteredMods = FilteredMods.FindAll(x => traderMask.Contains(x.Id));
 var FilteredGuns = processedWeapons.ToList().FindAll(x => traderMask.Contains(x.Id));
+var FilteredAmmo = (List<Ext_Ammo>)processed_ammo.Where(x => traderMask.Contains(x?.Id)).ToList();
 
 Console.WriteLine("Filt. Mods: " + FilteredMods.Count);
 Console.WriteLine("Filt. Guns: " + FilteredGuns.Count);
+Console.WriteLine("Filt. Ammo: " + FilteredAmmo.Count);
 
 // These are just here really to plug in to existing code
 var assaultRifles = FilteredGuns.Where(c => c is AssaultRifle || c is AssaultCarbine || c is Smg).ToList();
 var mods = FilteredMods.OfType<WeaponMod>();
 
-List<Weapon> ergos = new ();
-List<Weapon> recoils = new ();
+List<(Weapon, Ext_Ammo)> ergos = new ();
+List<(Weapon, Ext_Ammo)> recoils = new ();
 
 foreach (Weapon rifle in assaultRifles)
 {
     Weapon assaultRifle_e = (Weapon)Recursion.recursiveFit((CompoundItem) rifle, mods, "ergo");
+    var ergo_weapon = Simple.selectAmmo(assaultRifle_e, FilteredAmmo, "penetration");
 
     Weapon assaultRifle_r = (Weapon)Recursion.recursiveFit((CompoundItem) rifle, mods, "recoil");
+    var recoil_weapon = Simple.selectAmmo(assaultRifle_r, FilteredAmmo, "penetration");
 
-    ergos.Add(assaultRifle_e);
-    recoils.Add(assaultRifle_r);
+    // Stanky hack if there isn't a bullet availible within params
+    if(ergo_weapon.Item2 != null)
+        ergos.Add(ergo_weapon);
+    if(recoil_weapon.Item2 != null)
+        recoils.Add(recoil_weapon);
 }
 
-ergos = ergos.OrderByDescending(x => MyExtensions.recursiveErgoWeapon(x)).ToList();
-recoils = recoils.OrderBy(x => MyExtensions.recursiveRecoilWeapon(x)).ToList();
+ergos = ergos.FindAll(x => x.Item2.PenetrationPower > 20);
+recoils = recoils.FindAll(x => x.Item2.PenetrationPower > 20);
+
+ergos = ergos.OrderByDescending(x => MyExtensions.recursiveErgoWeapon(x.Item1)).ToList();
+recoils = recoils.OrderBy(x => MyExtensions.recursiveRecoilWeapon(x.Item1)).ToList();
 
 Console.WriteLine("");
 Console.WriteLine("");
