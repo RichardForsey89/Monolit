@@ -124,6 +124,9 @@ IEnumerable<Item> AllWeapons = database.GetItems(m => m is Weapon);
 
 IEnumerable<Item> AllAmmo = database.GetItems(m => m is Ammo);
 
+//Simple.inspectList<CombMuzzleDevice>(AllMods.OfType<WeaponMod>().ToList());
+//Environment.Exit(0);
+
 
 // A janky workaround maybe
 List<string> ammo_IDs = new();
@@ -180,14 +183,17 @@ foreach (var pair in BaseWeaponBundles)
     }
     
 }
-
 // Setup the filters for things that I don't think are relevant, but we also remove the Mounts so they can be added in clean later
-Type[] ModsFilter = 
-    { typeof(IronSight), typeof(CompactCollimator), typeof(Collimator),
-      typeof(OpticScope), typeof(NightVision), typeof(ThermalVision),
-      typeof(AssaultScope), typeof(SpecialScope),
-      typeof(CombTactDevice), typeof(Flashlight), typeof(LaserDesignator),
-      typeof(Mount)};
+bool silencers = false;
+List<Type> ModsFilter = new List<Type>() {
+    typeof(IronSight), typeof(CompactCollimator), typeof(Collimator),
+    typeof(OpticScope), typeof(NightVision), typeof(ThermalVision),
+    typeof(AssaultScope), typeof(SpecialScope),
+    typeof(CombTactDevice), typeof(Flashlight), typeof(LaserDesignator),
+    typeof(Mount)};
+
+if (!silencers)
+    ModsFilter.Add(typeof(Silencer));
 
 // Apply that filter
 var FilteredMods = AllMods.Where(mod => !ModsFilter.Contains(mod.GetType())).ToList();

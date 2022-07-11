@@ -52,6 +52,20 @@ namespace TarkovToy.ExtensionMethods
             }
             return (weapon, bullet);
         }
+
+        public static void inspectList<T>(List<WeaponMod> aList)
+        {
+            var result = aList.Where(x => x.GetType() == typeof(T)).ToList();
+            result.ForEach((x) =>
+            {
+                Console.WriteLine(x.Name);
+                Console.WriteLine(x.Id);
+                Console.WriteLine("e: " + x.Ergonomics);
+                Console.WriteLine("r: " + x.Recoil);
+                Console.WriteLine("c: " + x.CreditsPrice);
+                Console.WriteLine("");
+            });
+        }
     }
 
 
@@ -66,14 +80,23 @@ namespace TarkovToy.ExtensionMethods
             return weapon;
         }
 
-        // TODO: Extend this method to take into account the difference between base mods and potential mods, add combinational sorting, add checks for incompatible items.
-        // Look at the old method where a "batch" of options are made and then chosen from, eg, stocks with rubber pads vs expensive stocks. Implement an efficency grading comparision.
+        // TODO:  add combinational sorting, add checks for incompatible items.
+        //  Implement an efficency grading comparision.
         public static CompoundItem recursiveFit(CompoundItem CI, IEnumerable<WeaponMod> mods, string mode)
         {
+            // Need to account for the possibility of base mods
+            // Need to make the efficency ranking as a helper methods used in OrderBy()
+            // Need to add guard condition for if the stat is 0, then it sorts by the other stat
+            // Need to add guard that if the module in the slot is a default && the new mod is equal or worse in that stat, skip.
+            // Ieda: "Marginal benefit" check that sees if the value of sold default - cost of bought replacement is positive
+
+            // TODO: Implement a vulgar efficency comparision of just stat/credit value
+            // TODO: Implement a way of comparing vs blocking items and selecting for the better option.
+
             foreach (Slot slot in CI.Slots)
             {
                 List<WeaponMod> shortList = mods.Where(item => slot.Filters[0].Whitelist.Contains(item.Id)).ToList();
-                List<WeaponMod> candidatesList = new();
+                List<WeaponMod>? candidatesList = new();
 
                 candidatesList.AddRange(shortList.Select(item => (WeaponMod)recursiveFit(item, mods, mode)));
 
@@ -81,10 +104,21 @@ namespace TarkovToy.ExtensionMethods
                 {
                     // repalce this with a switch when you add more options.
                     if (mode.Equals("ergo"))
+                    {
                         candidatesList = candidatesList.OrderByDescending(x => getModTotals(x).t_ergo).ToList();
+
+                        // Check if there are multiple best options and then sort by lowest price to best
+                        candidatesList = candidatesList.Where(x => getModTotals(x).t_ergo == getModTotals(candidatesList.First()).t_ergo).ToList();
+                        candidatesList = candidatesList.OrderBy(x => getModTotals(x).t_price).ToList();
+                    }
                     else if (mode.Equals("recoil"))
+                    {
                         candidatesList = candidatesList.OrderBy(x => getModTotals(x).t_recoil).ToList();
 
+                        // Check if there are multiple best options and then sort by lowest price to best
+                        candidatesList = candidatesList.Where(x => getModTotals(x).t_recoil == getModTotals(candidatesList.First()).t_recoil).ToList();
+                        candidatesList = candidatesList.OrderBy(x => getModTotals(x).t_price).ToList();
+                    }
                     slot.ContainedItem = candidatesList.First();
                 }
                 
