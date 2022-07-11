@@ -121,8 +121,14 @@
         "containsItems": [
           {
             "item": {
-              "id": "560e620e4bdc2d724b8b456b",
-              "name": "SV-98 7.62x54R muzzle device"
+              "id": "559ba5b34bdc2d1f1a8b4582",
+              "name": "SV-98 7.62x54R 10-round magazine"
+            }
+          },
+          {
+            "item": {
+              "id": "56083e1b4bdc2dc8488b4572",
+              "name": "SV-98 rear sight"
             }
           },
           {
@@ -133,14 +139,8 @@
           },
           {
             "item": {
-              "id": "559ba5b34bdc2d1f1a8b4582",
-              "name": "SV-98 7.62x54R 10-round magazine"
-            }
-          },
-          {
-            "item": {
-              "id": "56083e1b4bdc2dc8488b4572",
-              "name": "SV-98 rear sight"
+              "id": "560e620e4bdc2d724b8b456b",
+              "name": "SV-98 7.62x54R muzzle device"
             }
           },
           {
@@ -181,6 +181,12 @@
         "containsItems": [
           {
             "item": {
+              "id": "5648b0744bdc2d363b8b4578",
+              "name": "AK-74 wooden handguard (6P20 Sb.6)"
+            }
+          },
+          {
+            "item": {
               "id": "59c6633186f7740cf0493bb9",
               "name": "AK-74 gas tube (6P20 Sb.1-2)"
             }
@@ -193,18 +199,6 @@
           },
           {
             "item": {
-              "id": "5648b0744bdc2d363b8b4578",
-              "name": "AK-74 wooden handguard (6P20 Sb.6)"
-            }
-          },
-          {
-            "item": {
-              "id": "5649b0544bdc2d1b2b8b458a",
-              "name": "AK-74 rear sight (6P20 Sb.2)"
-            }
-          },
-          {
-            "item": {
               "id": "5649ad3f4bdc2df8348b4585",
               "name": "AK bakelite pistol grip (6P1 Sb.8V)"
             }
@@ -213,6 +207,12 @@
             "item": {
               "id": "5649af094bdc2df8348b4586",
               "name": "AK-74 dust cover (6P20 0-1)"
+            }
+          },
+          {
+            "item": {
+              "id": "5649b0544bdc2d1b2b8b458a",
+              "name": "AK-74 rear sight (6P20 Sb.2)"
             }
           },
           {
@@ -331,6 +331,12 @@
         "containsItems": [
           {
             "item": {
+              "id": "571a282c2459771fb2755a69",
+              "name": "TT side grips"
+            }
+          },
+          {
+            "item": {
               "id": "571a26d524597720680fbe8a",
               "name": "TT 7.62x25 116mm barrel"
             }
@@ -339,12 +345,6 @@
             "item": {
               "id": "571a29dc2459771fb2755a6a",
               "name": "TT 7.62x25 tt-105 8-round magazine"
-            }
-          },
-          {
-            "item": {
-              "id": "571a282c2459771fb2755a69",
-              "name": "TT side grips"
             }
           }
         ]
@@ -385,12 +385,6 @@
           },
           {
             "item": {
-              "id": "576167ab2459773cad038c43",
-              "name": "SOK-12 thread protection tube"
-            }
-          },
-          {
-            "item": {
               "id": "5649ade84bdc2d1b2b8b4587",
               "name": "AK polymer pistol grip (6P1 Sb.8)"
             }
@@ -403,8 +397,8 @@
           },
           {
             "item": {
-              "id": "57616a9e2459773c7a400234",
-              "name": "SOK-12 12/76 sb.5 5-round magazine"
+              "id": "576167ab2459773cad038c43",
+              "name": "SOK-12 thread protection tube"
             }
           },
           {
@@ -417,6 +411,12 @@
             "item": {
               "id": "57616ca52459773c69055192",
               "name": "SOK-12 AK-style stock"
+            }
+          },
+          {
+            "item": {
+              "id": "57616a9e2459773c7a400234",
+              "name": "SOK-12 12/76 sb.5 5-round magazine"
             }
           }
         ]
@@ -457,8 +457,8 @@
           },
           {
             "item": {
-              "id": "578395402459774a256959b5",
-              "name": "VSS dust cover"
+              "id": "578395e82459774a0e553c7b",
+              "name": "VSS wooden stock"
             }
           },
           {
@@ -469,8 +469,8 @@
           },
           {
             "item": {
-              "id": "578395e82459774a0e553c7b",
-              "name": "VSS wooden stock"
+              "id": "578395402459774a256959b5",
+              "name": "VSS dust cover"
             }
           }
         ]
@@ -511,14 +511,14 @@
           },
           {
             "item": {
-              "id": "57838f9f2459774a150289a0",
-              "name": "VSS 9x39 6L25 20-round magazine"
+              "id": "57c44fa82459772d2d75e415",
+              "name": "AS VAL pistol grip"
             }
           },
           {
             "item": {
-              "id": "57c44fa82459772d2d75e415",
-              "name": "AS VAL pistol grip"
+              "id": "57838f9f2459774a150289a0",
+              "name": "VSS 9x39 6L25 20-round magazine"
             }
           },
           {
@@ -559,12 +559,6 @@
           },
           {
             "item": {
-              "id": "57dc324a24597759501edc20",
-              "name": "AKS-74U 5.45x39 muzzle brake (6P26 0-20)"
-            }
-          },
-          {
-            "item": {
               "id": "57dc347d245977596754e7a1",
               "name": "AKS-74U metal skeleton stock (6P26 Sb.5)"
             }
@@ -577,6 +571,18 @@
           },
           {
             "item": {
+              "id": "57dc324a24597759501edc20",
+              "name": "AKS-74U 5.45x39 muzzle brake (6P26 0-20)"
+            }
+          },
+          {
+            "item": {
+              "id": "59d36a0086f7747e673f3946",
+              "name": "AKS-74U gas tube (6P26 Sb.1-2)"
+            }
+          },
+          {
+            "item": {
               "id": "57dc32dc245977596d4ef3d3",
               "name": "AKS-74U wooden handguard (6P26 Sb.6)"
             }
@@ -585,12 +591,6 @@
             "item": {
               "id": "57dc334d245977597164366f",
               "name": "AKS-74U dust cover (6P26 Sb.7)"
-            }
-          },
-          {
-            "item": {
-              "id": "59d36a0086f7747e673f3946",
-              "name": "AKS-74U gas tube (6P26 Sb.1-2)"
             }
           }
         ]
@@ -631,14 +631,14 @@
         "containsItems": [
           {
             "item": {
-              "id": "57d1519e24597714373db79d",
-              "name": "PP-91 \"Kedr\" 9x18PM 30-round magazine"
+              "id": "57d152ec245977144076ccdf",
+              "name": "PP-91 \"Kedr\" polymer pistol grip"
             }
           },
           {
             "item": {
-              "id": "57d152ec245977144076ccdf",
-              "name": "PP-91 \"Kedr\" polymer pistol grip"
+              "id": "57d1519e24597714373db79d",
+              "name": "PP-91 \"Kedr\" 9x18PM 30-round magazine"
             }
           }
         ]
@@ -649,20 +649,26 @@
         "containsItems": [
           {
             "item": {
-              "id": "57dc347d245977596754e7a1",
-              "name": "AKS-74U metal skeleton stock (6P26 Sb.5)"
-            }
-          },
-          {
-            "item": {
               "id": "5649ad3f4bdc2df8348b4585",
               "name": "AK bakelite pistol grip (6P1 Sb.8V)"
             }
           },
           {
             "item": {
+              "id": "57dc347d245977596754e7a1",
+              "name": "AKS-74U metal skeleton stock (6P26 Sb.5)"
+            }
+          },
+          {
+            "item": {
               "id": "564ca99c4bdc2d16268b4589",
               "name": "AK-74 5.45x39 6L20 30-round magazine"
+            }
+          },
+          {
+            "item": {
+              "id": "57dc324a24597759501edc20",
+              "name": "AKS-74U 5.45x39 muzzle brake (6P26 0-20)"
             }
           },
           {
@@ -675,12 +681,6 @@
             "item": {
               "id": "59d36a0086f7747e673f3946",
               "name": "AKS-74U gas tube (6P26 Sb.1-2)"
-            }
-          },
-          {
-            "item": {
-              "id": "57dc324a24597759501edc20",
-              "name": "AKS-74U 5.45x39 muzzle brake (6P26 0-20)"
             }
           },
           {
@@ -835,32 +835,8 @@
           },
           {
             "item": {
-              "id": "5894a73486f77426d259076c",
-              "name": "MPX flip-up front sight"
-            }
-          },
-          {
-            "item": {
-              "id": "5894a2c386f77427140b8342",
-              "name": "MPX 9x19 203mm barrel"
-            }
-          },
-          {
-            "item": {
               "id": "58949dea86f77409483e16a8",
               "name": "MPX A2 9x19 flash hider"
-            }
-          },
-          {
-            "item": {
-              "id": "5894a42086f77426d2590762",
-              "name": "MPX GEN1 handguard"
-            }
-          },
-          {
-            "item": {
-              "id": "58a5c12e86f7745d585a2b9e",
-              "name": "MPX GEN1 handguard 4 inch rail"
             }
           },
           {
@@ -871,20 +847,44 @@
           },
           {
             "item": {
+              "id": "5894a73486f77426d259076c",
+              "name": "MPX flip-up front sight"
+            }
+          },
+          {
+            "item": {
+              "id": "5894a42086f77426d2590762",
+              "name": "MPX GEN1 handguard"
+            }
+          },
+          {
+            "item": {
+              "id": "5894a2c386f77427140b8342",
+              "name": "MPX 9x19 203mm barrel"
+            }
+          },
+          {
+            "item": {
+              "id": "58a5c12e86f7745d585a2b9e",
+              "name": "MPX GEN1 handguard 4 inch rail"
+            }
+          },
+          {
+            "item": {
               "id": "5894a81786f77427140b8347",
               "name": "MPX flip-up rear sight"
             }
           },
           {
             "item": {
-              "id": "58949edd86f77409483e16a9",
-              "name": "MPX double latch charging handle"
+              "id": "5894a13e86f7742405482982",
+              "name": "MPX/MCX collapsing/telescoping stock"
             }
           },
           {
             "item": {
-              "id": "5894a13e86f7742405482982",
-              "name": "MPX/MCX collapsing/telescoping stock"
+              "id": "58949edd86f77409483e16a9",
+              "name": "MPX double latch charging handle"
             }
           }
         ]
@@ -1051,6 +1051,12 @@
           },
           {
             "item": {
+              "id": "5926d3c686f77410de68ebc8",
+              "name": "HK MP5 A2 stock"
+            }
+          },
+          {
+            "item": {
               "id": "5926d2be86f774134d668e4e",
               "name": "HK MP5 Drum rear sight"
             }
@@ -1059,12 +1065,6 @@
             "item": {
               "id": "5926e16e86f7742f5a0f7ecb",
               "name": "HK MP5 3-lug thread protector"
-            }
-          },
-          {
-            "item": {
-              "id": "5926d3c686f77410de68ebc8",
-              "name": "HK MP5 A2 stock"
             }
           },
           {
@@ -1261,12 +1261,6 @@
           },
           {
             "item": {
-              "id": "5648b1504bdc2d9d488b4584",
-              "name": "AK-74 polymer handguard (6P20 Sb.9)"
-            }
-          },
-          {
-            "item": {
               "id": "599860e986f7743bb57573a6",
               "name": "PP-19-01 \"Vityaz\" rear sight"
             }
@@ -1275,6 +1269,12 @@
             "item": {
               "id": "59ccd11386f77428f24a488f",
               "name": "PP-19-01 \"Vityaz\" gas tube"
+            }
+          },
+          {
+            "item": {
+              "id": "5648b1504bdc2d9d488b4584",
+              "name": "AK-74 polymer handguard (6P20 Sb.9)"
             }
           }
         ]
@@ -1285,14 +1285,14 @@
         "containsItems": [
           {
             "item": {
-              "id": "59d64ec286f774171d1e0a42",
-              "name": "AKM gas tube (6P1 Sb.1-2)"
+              "id": "59d64f2f86f77417193ef8b3",
+              "name": "AKM wooden handguard (6P1 Sb.6-1)"
             }
           },
           {
             "item": {
-              "id": "59d6507c86f7741b846413a2",
-              "name": "AKM dust cover (6P1 0-1)"
+              "id": "59d64ec286f774171d1e0a42",
+              "name": "AKM gas tube (6P1 Sb.1-2)"
             }
           },
           {
@@ -1303,14 +1303,14 @@
           },
           {
             "item": {
-              "id": "59d64f2f86f77417193ef8b3",
-              "name": "AKM wooden handguard (6P1 Sb.6-1)"
+              "id": "59e62cc886f77440d40b52a1",
+              "name": "AKM bakelite pistol grip"
             }
           },
           {
             "item": {
-              "id": "59e62cc886f77440d40b52a1",
-              "name": "AKM bakelite pistol grip"
+              "id": "59d6507c86f7741b846413a2",
+              "name": "AKM dust cover (6P1 0-1)"
             }
           },
           {
@@ -1351,12 +1351,6 @@
           },
           {
             "item": {
-              "id": "59e6449086f7746c9f75e822",
-              "name": "Molot AKM-type dust cover"
-            }
-          },
-          {
-            "item": {
               "id": "59e61eb386f77440d64f5daf",
               "name": "VPO-136 \"Vepr-KM\" 7.62x39 muzzle brake & compensator"
             }
@@ -1369,14 +1363,20 @@
           },
           {
             "item": {
-              "id": "59e6227d86f77440d64f5dc2",
-              "name": "VPO-136 \"Vepr-KM\" wooden stock"
+              "id": "59e6449086f7746c9f75e822",
+              "name": "Molot AKM-type dust cover"
             }
           },
           {
             "item": {
               "id": "59d650cf86f7741b846413a4",
               "name": "AKM rear sight (6P1 Sb.2-1)"
+            }
+          },
+          {
+            "item": {
+              "id": "59e6227d86f77440d64f5dc2",
+              "name": "VPO-136 \"Vepr-KM\" wooden stock"
             }
           },
           {
@@ -1405,14 +1405,8 @@
           },
           {
             "item": {
-              "id": "59e8977386f77415a553c453",
-              "name": "VPO-209 rear sight"
-            }
-          },
-          {
-            "item": {
-              "id": "59e6449086f7746c9f75e822",
-              "name": "Molot AKM-type dust cover"
+              "id": "59e8a00d86f7742ad93b569c",
+              "name": "VPO-209 thread protector"
             }
           },
           {
@@ -1423,8 +1417,14 @@
           },
           {
             "item": {
-              "id": "59e8a00d86f7742ad93b569c",
-              "name": "VPO-209 thread protector"
+              "id": "59e6449086f7746c9f75e822",
+              "name": "Molot AKM-type dust cover"
+            }
+          },
+          {
+            "item": {
+              "id": "59e8977386f77415a553c453",
+              "name": "VPO-209 rear sight"
             }
           },
           {
@@ -1531,6 +1531,12 @@
           },
           {
             "item": {
+              "id": "59985a8086f77414ec448d1a",
+              "name": "PP-19-01 \"Vityaz\" dust cover"
+            }
+          },
+          {
+            "item": {
               "id": "599860e986f7743bb57573a6",
               "name": "PP-19-01 \"Vityaz\" rear sight"
             }
@@ -1539,12 +1545,6 @@
             "item": {
               "id": "59ccd11386f77428f24a488f",
               "name": "PP-19-01 \"Vityaz\" gas tube"
-            }
-          },
-          {
-            "item": {
-              "id": "59985a8086f77414ec448d1a",
-              "name": "PP-19-01 \"Vityaz\" dust cover"
             }
           },
           {
@@ -1585,6 +1585,12 @@
           },
           {
             "item": {
+              "id": "59d650cf86f7741b846413a4",
+              "name": "AKM rear sight (6P1 Sb.2-1)"
+            }
+          },
+          {
+            "item": {
               "id": "59d6507c86f7741b846413a2",
               "name": "AKM dust cover (6P1 0-1)"
             }
@@ -1593,12 +1599,6 @@
             "item": {
               "id": "59ff3b6a86f77477562ff5ed",
               "name": "AKMS shoulder piece (6P4 Sb.1-19)"
-            }
-          },
-          {
-            "item": {
-              "id": "59d650cf86f7741b846413a4",
-              "name": "AKM rear sight (6P1 Sb.2-1)"
             }
           },
           {
@@ -1639,14 +1639,14 @@
           },
           {
             "item": {
-              "id": "59d650cf86f7741b846413a4",
-              "name": "AKM rear sight (6P1 Sb.2-1)"
+              "id": "59d6507c86f7741b846413a2",
+              "name": "AKM dust cover (6P1 0-1)"
             }
           },
           {
             "item": {
-              "id": "59d6507c86f7741b846413a2",
-              "name": "AKM dust cover (6P1 0-1)"
+              "id": "59d650cf86f7741b846413a4",
+              "name": "AKM rear sight (6P1 Sb.2-1)"
             }
           },
           {
@@ -1669,26 +1669,26 @@
         "containsItems": [
           {
             "item": {
-              "id": "5a17fc70fcdbcb0176308b3d",
-              "name": "APS bakelite side-pieces"
-            }
-          },
-          {
-            "item": {
               "id": "5a17fb03fcdbcbcae668728f",
               "name": "APS 9x18PM 20-round magazine"
             }
           },
           {
             "item": {
-              "id": "5aba637ad8ce87001773e17f",
-              "name": "APS rear sight"
+              "id": "5a17fc70fcdbcb0176308b3d",
+              "name": "APS bakelite side-pieces"
             }
           },
           {
             "item": {
               "id": "5aba62f8d8ce87001943946b",
               "name": "APS front sight"
+            }
+          },
+          {
+            "item": {
+              "id": "5aba637ad8ce87001773e17f",
+              "name": "APS rear sight"
             }
           }
         ]
@@ -1909,8 +1909,8 @@
           },
           {
             "item": {
-              "id": "5a329052c4a28200741e22d3",
-              "name": "R11 RSASS handguard"
+              "id": "5a33ca0fc4a282000d72292f",
+              "name": "Colt A2 buffer tube"
             }
           },
           {
@@ -1921,8 +1921,8 @@
           },
           {
             "item": {
-              "id": "5a33ca0fc4a282000d72292f",
-              "name": "Colt A2 buffer tube"
+              "id": "5a329052c4a28200741e22d3",
+              "name": "R11 RSASS handguard"
             }
           },
           {
@@ -2155,8 +2155,8 @@
           },
           {
             "item": {
-              "id": "5a7880d0c5856700142fdd9d",
-              "name": "M870 SPS polymer stock"
+              "id": "5a7882dcc5856700177af662",
+              "name": "M870 12ga 4-shell magazine cap"
             }
           },
           {
@@ -2167,8 +2167,8 @@
           },
           {
             "item": {
-              "id": "5a7882dcc5856700177af662",
-              "name": "M870 12ga 4-shell magazine cap"
+              "id": "5a7880d0c5856700142fdd9d",
+              "name": "M870 SPS polymer stock"
             }
           }
         ]
@@ -2191,14 +2191,14 @@
           },
           {
             "item": {
-              "id": "5a6f58f68dc32e000a311390",
-              "name": "Glock front sight"
+              "id": "5a6f5d528dc32e00094b97d9",
+              "name": "Glock rear sight"
             }
           },
           {
             "item": {
-              "id": "5a6f5d528dc32e00094b97d9",
-              "name": "Glock rear sight"
+              "id": "5a6f58f68dc32e000a311390",
+              "name": "Glock front sight"
             }
           },
           {
@@ -3289,26 +3289,26 @@
           },
           {
             "item": {
-              "id": "5ab24ef9e5b5b00fe93c9209",
-              "name": "M1A SOCOM 16 upper part"
-            }
-          },
-          {
-            "item": {
               "id": "5aaf9d53e5b5b00015042a52",
               "name": "M1A 7.62x51 16 inch barrel"
             }
           },
           {
             "item": {
-              "id": "5aafa49ae5b5b00015042a58",
-              "name": "M1A SA XS Post .125 blade front sight"
+              "id": "5aafa1c2e5b5b00015042a56",
+              "name": "M1A SOCOM 16 7.62x51 muzzle brake-compensator"
             }
           },
           {
             "item": {
-              "id": "5aafa1c2e5b5b00015042a56",
-              "name": "M1A SOCOM 16 7.62x51 muzzle brake-compensator"
+              "id": "5ab24ef9e5b5b00fe93c9209",
+              "name": "M1A SOCOM 16 upper part"
+            }
+          },
+          {
+            "item": {
+              "id": "5aafa49ae5b5b00015042a58",
+              "name": "M1A SA XS Post .125 blade front sight"
             }
           },
           {
@@ -3325,12 +3325,6 @@
         "containsItems": [
           {
             "item": {
-              "id": "5649aa744bdc2ded0b8b457e",
-              "name": "AK-74 5.45x39 muzzle brake-compensator (6P20 0-20)"
-            }
-          },
-          {
-            "item": {
               "id": "59c6633186f7740cf0493bb9",
               "name": "AK-74 gas tube (6P20 Sb.1-2)"
             }
@@ -3343,8 +3337,14 @@
           },
           {
             "item": {
-              "id": "57e3dba62459770f0c32322b",
-              "name": "AK bakelite pistol grip (6P4 Sb.9)"
+              "id": "5649aa744bdc2ded0b8b457e",
+              "name": "AK-74 5.45x39 muzzle brake-compensator (6P20 0-20)"
+            }
+          },
+          {
+            "item": {
+              "id": "5649af094bdc2df8348b4586",
+              "name": "AK-74 dust cover (6P20 0-1)"
             }
           },
           {
@@ -3355,8 +3355,8 @@
           },
           {
             "item": {
-              "id": "5649af094bdc2df8348b4586",
-              "name": "AK-74 dust cover (6P20 0-1)"
+              "id": "57e3dba62459770f0c32322b",
+              "name": "AK bakelite pistol grip (6P4 Sb.9)"
             }
           },
           {
@@ -3391,8 +3391,8 @@
           },
           {
             "item": {
-              "id": "59d6507c86f7741b846413a2",
-              "name": "AKM dust cover (6P1 0-1)"
+              "id": "59e61eb386f77440d64f5daf",
+              "name": "VPO-136 \"Vepr-KM\" 7.62x39 muzzle brake & compensator"
             }
           },
           {
@@ -3403,8 +3403,8 @@
           },
           {
             "item": {
-              "id": "59e61eb386f77440d64f5daf",
-              "name": "VPO-136 \"Vepr-KM\" 7.62x39 muzzle brake & compensator"
+              "id": "59d6507c86f7741b846413a2",
+              "name": "AKM dust cover (6P1 0-1)"
             }
           },
           {
@@ -3433,6 +3433,12 @@
         "containsItems": [
           {
             "item": {
+              "id": "5a17fc70fcdbcb0176308b3d",
+              "name": "APS bakelite side-pieces"
+            }
+          },
+          {
+            "item": {
               "id": "5a17fb03fcdbcbcae668728f",
               "name": "APS 9x18PM 20-round magazine"
             }
@@ -3445,26 +3451,20 @@
           },
           {
             "item": {
-              "id": "5a17fc70fcdbcb0176308b3d",
-              "name": "APS bakelite side-pieces"
-            }
-          },
-          {
-            "item": {
               "id": "5aba62f8d8ce87001943946b",
               "name": "APS front sight"
             }
           },
           {
             "item": {
-              "id": "5aba639ed8ce8700182ece67",
-              "name": "APB rear sight"
+              "id": "5abcc328d8ce8700194394f3",
+              "name": "APB 9x18PM sound suppressor"
             }
           },
           {
             "item": {
-              "id": "5abcc328d8ce8700194394f3",
-              "name": "APB 9x18PM sound suppressor"
+              "id": "5aba639ed8ce8700182ece67",
+              "name": "APB rear sight"
             }
           }
         ]
@@ -3475,14 +3475,14 @@
         "containsItems": [
           {
             "item": {
-              "id": "59c6633186f7740cf0493bb9",
-              "name": "AK-74 gas tube (6P20 Sb.1-2)"
+              "id": "5648b1504bdc2d9d488b4584",
+              "name": "AK-74 polymer handguard (6P20 Sb.9)"
             }
           },
           {
             "item": {
-              "id": "5648b1504bdc2d9d488b4584",
-              "name": "AK-74 polymer handguard (6P20 Sb.9)"
+              "id": "59c6633186f7740cf0493bb9",
+              "name": "AK-74 gas tube (6P20 Sb.1-2)"
             }
           },
           {
@@ -3493,14 +3493,14 @@
           },
           {
             "item": {
-              "id": "5649ade84bdc2d1b2b8b4587",
-              "name": "AK polymer pistol grip (6P1 Sb.8)"
+              "id": "5ac50da15acfc4001718d287",
+              "name": "AK-74M dust cover (6P34 0-1)"
             }
           },
           {
             "item": {
-              "id": "5ac50da15acfc4001718d287",
-              "name": "AK-74M dust cover (6P34 0-1)"
+              "id": "5649ade84bdc2d1b2b8b4587",
+              "name": "AK polymer pistol grip (6P1 Sb.8)"
             }
           },
           {
@@ -3511,14 +3511,14 @@
           },
           {
             "item": {
-              "id": "5ac72e475acfc400180ae6fe",
-              "name": "AK-74M rear sight (6P20 Sb.2)"
+              "id": "55d480c04bdc2d1d4e8b456a",
+              "name": "AK-74 5.45x39 6L23 30-round magazine"
             }
           },
           {
             "item": {
-              "id": "55d480c04bdc2d1d4e8b456a",
-              "name": "AK-74 5.45x39 6L23 30-round magazine"
+              "id": "5ac72e475acfc400180ae6fe",
+              "name": "AK-74M rear sight (6P20 Sb.2)"
             }
           }
         ]
@@ -3529,12 +3529,6 @@
         "containsItems": [
           {
             "item": {
-              "id": "5648b1504bdc2d9d488b4584",
-              "name": "AK-74 polymer handguard (6P20 Sb.9)"
-            }
-          },
-          {
-            "item": {
               "id": "59c6633186f7740cf0493bb9",
               "name": "AK-74 gas tube (6P20 Sb.1-2)"
             }
@@ -3543,6 +3537,12 @@
             "item": {
               "id": "5ac72e615acfc43f67248aa0",
               "name": "AK-101 5.56x45 muzzle brake-compensator"
+            }
+          },
+          {
+            "item": {
+              "id": "5648b1504bdc2d9d488b4584",
+              "name": "AK-74 polymer handguard (6P20 Sb.9)"
             }
           },
           {
@@ -3595,6 +3595,12 @@
           },
           {
             "item": {
+              "id": "5ac50da15acfc4001718d287",
+              "name": "AK-74M dust cover (6P34 0-1)"
+            }
+          },
+          {
+            "item": {
               "id": "5ac72e725acfc400180ae701",
               "name": "AK-102 5.56x45 muzzle brake-compensator (6P44 0-20)"
             }
@@ -3603,12 +3609,6 @@
             "item": {
               "id": "5649ade84bdc2d1b2b8b4587",
               "name": "AK polymer pistol grip (6P1 Sb.8)"
-            }
-          },
-          {
-            "item": {
-              "id": "5ac50da15acfc4001718d287",
-              "name": "AK-74M dust cover (6P34 0-1)"
             }
           },
           {
@@ -3643,14 +3643,14 @@
           },
           {
             "item": {
-              "id": "5648b1504bdc2d9d488b4584",
-              "name": "AK-74 polymer handguard (6P20 Sb.9)"
+              "id": "5ac72e7d5acfc40016339a02",
+              "name": "AK-103 7.62x39 muzzle brake-compensator"
             }
           },
           {
             "item": {
-              "id": "5ac72e7d5acfc40016339a02",
-              "name": "AK-103 7.62x39 muzzle brake-compensator"
+              "id": "5648b1504bdc2d9d488b4584",
+              "name": "AK-74 polymer handguard (6P20 Sb.9)"
             }
           },
           {
@@ -3697,12 +3697,6 @@
           },
           {
             "item": {
-              "id": "5648b1504bdc2d9d488b4584",
-              "name": "AK-74 polymer handguard (6P20 Sb.9)"
-            }
-          },
-          {
-            "item": {
               "id": "5ac72e895acfc43b321d4bd5",
               "name": "AK-104 7.62x39 muzzle brake-compensator (6P46 0-20)"
             }
@@ -3711,6 +3705,12 @@
             "item": {
               "id": "5649ade84bdc2d1b2b8b4587",
               "name": "AK polymer pistol grip (6P1 Sb.8)"
+            }
+          },
+          {
+            "item": {
+              "id": "5648b1504bdc2d9d488b4584",
+              "name": "AK-74 polymer handguard (6P20 Sb.9)"
             }
           },
           {
@@ -3757,26 +3757,26 @@
           },
           {
             "item": {
-              "id": "5ac72e945acfc43f3b691116",
-              "name": "AK-105 5.45x39 muzzle brake-compensator (6P44 0-20)"
-            }
-          },
-          {
-            "item": {
               "id": "5649ade84bdc2d1b2b8b4587",
               "name": "AK polymer pistol grip (6P1 Sb.8)"
             }
           },
           {
             "item": {
-              "id": "5ac50da15acfc4001718d287",
-              "name": "AK-74M dust cover (6P34 0-1)"
+              "id": "5ac72e945acfc43f3b691116",
+              "name": "AK-105 5.45x39 muzzle brake-compensator (6P44 0-20)"
             }
           },
           {
             "item": {
               "id": "5ac733a45acfc400192630e2",
               "name": "AK-105 rear sight (6P44 Sb.1-30)"
+            }
+          },
+          {
+            "item": {
+              "id": "5ac50da15acfc4001718d287",
+              "name": "AK-74M dust cover (6P34 0-1)"
             }
           },
           {
@@ -3817,14 +3817,14 @@
           },
           {
             "item": {
-              "id": "5ae099875acfc4001714e593",
-              "name": "Mosin Rifle front sight"
+              "id": "5ae099925acfc4001a5fc7b3",
+              "name": "Mosin Rifle rear sight"
             }
           },
           {
             "item": {
-              "id": "5ae099925acfc4001a5fc7b3",
-              "name": "Mosin Rifle rear sight"
+              "id": "5ae099875acfc4001714e593",
+              "name": "Mosin Rifle front sight"
             }
           }
         ]
@@ -4177,14 +4177,14 @@
         "containsItems": [
           {
             "item": {
-              "id": "5b099b7d5acfc400186331e4",
-              "name": "SA-58 3-Prong Trident 7.62x51 flash hider"
+              "id": "5b099b965acfc400186331e6",
+              "name": "SA-58 TAPCO SAW-style pistol grip (Black)"
             }
           },
           {
             "item": {
-              "id": "5b099a765acfc47a8607efe3",
-              "name": "SA-58 7.62x51 11 inch barrel"
+              "id": "5b099ac65acfc400186331e1",
+              "name": "SA-58/FAL 7.62x51 20-round magazine"
             }
           },
           {
@@ -4195,14 +4195,14 @@
           },
           {
             "item": {
-              "id": "5b099b965acfc400186331e6",
-              "name": "SA-58 TAPCO SAW-style pistol grip (Black)"
+              "id": "5b099a765acfc47a8607efe3",
+              "name": "SA-58 7.62x51 11 inch barrel"
             }
           },
           {
             "item": {
-              "id": "5b099ac65acfc400186331e1",
-              "name": "SA-58/FAL 7.62x51 20-round magazine"
+              "id": "5b099b7d5acfc400186331e4",
+              "name": "SA-58 3-Prong Trident 7.62x51 flash hider"
             }
           },
           {
@@ -4219,14 +4219,14 @@
           },
           {
             "item": {
-              "id": "5b099bf25acfc4001637e683",
-              "name": "SA-58 buffer tube adapter"
+              "id": "5649be884bdc2d79388b4577",
+              "name": "Colt Carbine buffer tube"
             }
           },
           {
             "item": {
-              "id": "5649be884bdc2d79388b4577",
-              "name": "Colt Carbine buffer tube"
+              "id": "5b099bf25acfc4001637e683",
+              "name": "SA-58 buffer tube adapter"
             }
           },
           {
@@ -4249,6 +4249,12 @@
         "containsItems": [
           {
             "item": {
+              "id": "5b1faa0f5acfc40dc528aeb5",
+              "name": "Glock 18C 9x19 pistol slide"
+            }
+          },
+          {
+            "item": {
               "id": "5b1fa9ea5acfc40018633c0a",
               "name": "Glock 18C 9x19 barrel with a compensator"
             }
@@ -4261,20 +4267,14 @@
           },
           {
             "item": {
-              "id": "5b1faa0f5acfc40dc528aeb5",
-              "name": "Glock 18C 9x19 pistol slide"
+              "id": "5a718b548dc32e000d46d262",
+              "name": "Glock 9x19 17-round magazine"
             }
           },
           {
             "item": {
               "id": "5a6f58f68dc32e000a311390",
               "name": "Glock front sight"
-            }
-          },
-          {
-            "item": {
-              "id": "5a718b548dc32e000d46d262",
-              "name": "Glock 9x19 17-round magazine"
             }
           }
         ]
@@ -4285,14 +4285,14 @@
         "containsItems": [
           {
             "item": {
-              "id": "5b3baf8f5acfc40dc5296692",
-              "name": "TT 7.62x25 116mm gilded barrel"
+              "id": "5b3cadf35acfc400194776a0",
+              "name": "TT ornated side grips"
             }
           },
           {
             "item": {
-              "id": "5b3cadf35acfc400194776a0",
-              "name": "TT ornated side grips"
+              "id": "5b3baf8f5acfc40dc5296692",
+              "name": "TT 7.62x25 116mm gilded barrel"
             }
           },
           {
@@ -4519,14 +4519,14 @@
           },
           {
             "item": {
-              "id": "5ba26acdd4351e003562908e",
-              "name": "HK MP7A1 4.6x30 flash hider"
+              "id": "5ba26b01d4351e0085325a51",
+              "name": "HK MP7 flip-up front sight"
             }
           },
           {
             "item": {
-              "id": "5ba26b01d4351e0085325a51",
-              "name": "HK MP7 flip-up front sight"
+              "id": "5ba26acdd4351e003562908e",
+              "name": "HK MP7A1 4.6x30 flash hider"
             }
           },
           {
@@ -4963,6 +4963,18 @@
           },
           {
             "item": {
+              "id": "5c05413a0db834001c390617",
+              "name": "5.56x45 HK Steel Maritime STANAG 30-round magazine"
+            }
+          },
+          {
+            "item": {
+              "id": "544a38634bdc2d58388b4568",
+              "name": "AR-15 Colt USGI A2 5.56x45 flash hider"
+            }
+          },
+          {
+            "item": {
               "id": "5bb20d53d4351e4502010a69",
               "name": "HK 416A5 5.56x45 upper receiver"
             }
@@ -4975,26 +4987,8 @@
           },
           {
             "item": {
-              "id": "5c05413a0db834001c390617",
-              "name": "5.56x45 HK Steel Maritime STANAG 30-round magazine"
-            }
-          },
-          {
-            "item": {
               "id": "5bb20dcad4351e3bac1212da",
               "name": "HK 416A5 low profile gas block"
-            }
-          },
-          {
-            "item": {
-              "id": "544a38634bdc2d58388b4568",
-              "name": "AR-15 Colt USGI A2 5.56x45 flash hider"
-            }
-          },
-          {
-            "item": {
-              "id": "5bb20de5d4351e0035629e59",
-              "name": "HK 416A5 Quad Rail handguard"
             }
           },
           {
@@ -5005,14 +4999,20 @@
           },
           {
             "item": {
-              "id": "5bb20e70d4351e0035629f8f",
-              "name": "AR-15 HK Slim Line buttstock"
+              "id": "5bb20de5d4351e0035629e59",
+              "name": "HK 416A5 Quad Rail handguard"
             }
           },
           {
             "item": {
               "id": "5bb20e58d4351e00320205d7",
               "name": "HK Enhanced Tube buffer tube"
+            }
+          },
+          {
+            "item": {
+              "id": "5bb20e70d4351e0035629f8f",
+              "name": "AR-15 HK Slim Line buttstock"
             }
           },
           {
@@ -5311,14 +5311,14 @@
           },
           {
             "item": {
-              "id": "5beec8b20db834001961942a",
-              "name": "RPK-16 buffer tube"
+              "id": "5beec8c20db834001d2c465c",
+              "name": "AK-12 stock"
             }
           },
           {
             "item": {
-              "id": "5beec8c20db834001d2c465c",
-              "name": "AK-12 stock"
+              "id": "5beec8b20db834001961942a",
+              "name": "RPK-16 buffer tube"
             }
           },
           {
@@ -5353,12 +5353,6 @@
         "containsItems": [
           {
             "item": {
-              "id": "5649aa744bdc2ded0b8b457e",
-              "name": "AK-74 5.45x39 muzzle brake-compensator (6P20 0-20)"
-            }
-          },
-          {
-            "item": {
               "id": "5648b0744bdc2d363b8b4578",
               "name": "AK-74 wooden handguard (6P20 Sb.6)"
             }
@@ -5371,14 +5365,8 @@
           },
           {
             "item": {
-              "id": "5649b0544bdc2d1b2b8b458a",
-              "name": "AK-74 rear sight (6P20 Sb.2)"
-            }
-          },
-          {
-            "item": {
-              "id": "5649af094bdc2df8348b4586",
-              "name": "AK-74 dust cover (6P20 0-1)"
+              "id": "5649aa744bdc2ded0b8b457e",
+              "name": "AK-74 5.45x39 muzzle brake-compensator (6P20 0-20)"
             }
           },
           {
@@ -5389,8 +5377,20 @@
           },
           {
             "item": {
+              "id": "5649af094bdc2df8348b4586",
+              "name": "AK-74 dust cover (6P20 0-1)"
+            }
+          },
+          {
+            "item": {
               "id": "5649b1c04bdc2d16268b457c",
               "name": "AK-74 wooden stock (6P20 Sb.5)"
+            }
+          },
+          {
+            "item": {
+              "id": "5649b0544bdc2d1b2b8b458a",
+              "name": "AK-74 rear sight (6P20 Sb.2)"
             }
           },
           {
@@ -5437,6 +5437,12 @@
           },
           {
             "item": {
+              "id": "5649b0544bdc2d1b2b8b458a",
+              "name": "AK-74 rear sight (6P20 Sb.2)"
+            }
+          },
+          {
+            "item": {
               "id": "564ca99c4bdc2d16268b4589",
               "name": "AK-74 5.45x39 6L20 30-round magazine"
             }
@@ -5445,12 +5451,6 @@
             "item": {
               "id": "5ab626e4d8ce87272e4c6e43",
               "name": "AKS-74 metal skeletonized stock (6P21 Sb.5)"
-            }
-          },
-          {
-            "item": {
-              "id": "5649b0544bdc2d1b2b8b458a",
-              "name": "AK-74 rear sight (6P20 Sb.2)"
             }
           }
         ]
@@ -5467,26 +5467,26 @@
           },
           {
             "item": {
-              "id": "5bfd35380db83400232fe5cc",
-              "name": "Mosin Rifle Infantry stock"
-            }
-          },
-          {
-            "item": {
               "id": "5ae09bff5acfc4001562219d",
               "name": "Mosin Rifle 7.62x54R 730mm regular barrel"
             }
           },
           {
             "item": {
-              "id": "5ae099925acfc4001a5fc7b3",
-              "name": "Mosin Rifle rear sight"
+              "id": "5ae099875acfc4001714e593",
+              "name": "Mosin Rifle front sight"
             }
           },
           {
             "item": {
-              "id": "5ae099875acfc4001714e593",
-              "name": "Mosin Rifle front sight"
+              "id": "5bfd35380db83400232fe5cc",
+              "name": "Mosin Rifle Infantry stock"
+            }
+          },
+          {
+            "item": {
+              "id": "5ae099925acfc4001a5fc7b3",
+              "name": "Mosin Rifle rear sight"
             }
           }
         ]
@@ -5497,14 +5497,14 @@
         "containsItems": [
           {
             "item": {
-              "id": "5bfeb32b0db834001a6694d9",
-              "name": "M700 Hogue Overmolded Ghillie stock"
+              "id": "5bfea7ad0db834001c38f1ee",
+              "name": "M700 7.62x51 Wyatts Outdoor 5-round magazine"
             }
           },
           {
             "item": {
-              "id": "5bfea7ad0db834001c38f1ee",
-              "name": "M700 7.62x51 Wyatts Outdoor 5-round magazine"
+              "id": "5bfeb32b0db834001a6694d9",
+              "name": "M700 Hogue Overmolded Ghillie stock"
             }
           },
           {
@@ -5527,12 +5527,6 @@
           },
           {
             "item": {
-              "id": "5c0fafb6d174af02a96260ba",
-              "name": "AR-15 ADAR 2-15 5.56x45 flash hider"
-            }
-          },
-          {
-            "item": {
               "id": "5aaa5e60e5b5b000140293d6",
               "name": "5.56x45 Magpul PMAG 10 GEN M3 STANAG 10-round magazine"
             }
@@ -5545,8 +5539,14 @@
           },
           {
             "item": {
-              "id": "5c0e2f5cd174af02a012cfc9",
-              "name": "AR-15 ADAR 2-15 wooden handguard"
+              "id": "5c0e2f26d174af02a9625114",
+              "name": "ADAR 2-15 5.56x45 upper receiver"
+            }
+          },
+          {
+            "item": {
+              "id": "5c0fafb6d174af02a96260ba",
+              "name": "AR-15 ADAR 2-15 5.56x45 flash hider"
             }
           },
           {
@@ -5557,8 +5557,8 @@
           },
           {
             "item": {
-              "id": "5c0e2f26d174af02a9625114",
-              "name": "ADAR 2-15 5.56x45 upper receiver"
+              "id": "5c0e2f5cd174af02a012cfc9",
+              "name": "AR-15 ADAR 2-15 wooden handguard"
             }
           },
           {
@@ -6007,20 +6007,14 @@
           },
           {
             "item": {
-              "id": "5c471bfc2e221602b21d4e17",
-              "name": "SVDS 7.62x54R muzzle brake-compensator"
-            }
-          },
-          {
-            "item": {
               "id": "5c471ba12e221602b3137d76",
               "name": "SVDS front sight"
             }
           },
           {
             "item": {
-              "id": "5c471c842e221615214259b5",
-              "name": "SVDS gas tube"
+              "id": "5c471bfc2e221602b21d4e17",
+              "name": "SVDS 7.62x54R muzzle brake-compensator"
             }
           },
           {
@@ -6033,6 +6027,12 @@
             "item": {
               "id": "5c471c6c2e221602b66cd9ae",
               "name": "SVDS polymer handguard"
+            }
+          },
+          {
+            "item": {
+              "id": "5c471c842e221615214259b5",
+              "name": "SVDS gas tube"
             }
           },
           {
@@ -6055,6 +6055,12 @@
         "containsItems": [
           {
             "item": {
+              "id": "5c48a14f2e2216152006edd7",
+              "name": "MDR handguard"
+            }
+          },
+          {
+            "item": {
               "id": "5c48a2c22e221602b313fb6c",
               "name": "MDR pistol grip"
             }
@@ -6069,12 +6075,6 @@
             "item": {
               "id": "5c48a2852e221602b21d5923",
               "name": "MDR 5.56x45 16 inch barrel"
-            }
-          },
-          {
-            "item": {
-              "id": "5c48a14f2e2216152006edd7",
-              "name": "MDR handguard"
             }
           },
           {
@@ -6139,14 +6139,14 @@
           },
           {
             "item": {
-              "id": "5cadc55cae921500103bb3be",
-              "name": "M9A3 9x19 pistol slide"
+              "id": "5cadc431ae921500113bb8d5",
+              "name": "M9A3 polymer side grips"
             }
           },
           {
             "item": {
-              "id": "5cadc431ae921500113bb8d5",
-              "name": "M9A3 polymer side grips"
+              "id": "5cadd919ae921500126a77f3",
+              "name": "M9A3 front sight"
             }
           },
           {
@@ -6157,14 +6157,14 @@
           },
           {
             "item": {
-              "id": "5cadc2e0ae9215051e1c21e7",
-              "name": "M9A3 9x19 17-round magazine"
+              "id": "5cadc55cae921500103bb3be",
+              "name": "M9A3 9x19 pistol slide"
             }
           },
           {
             "item": {
-              "id": "5cadd919ae921500126a77f3",
-              "name": "M9A3 front sight"
+              "id": "5cadc2e0ae9215051e1c21e7",
+              "name": "M9A3 9x19 17-round magazine"
             }
           }
         ]
@@ -6193,14 +6193,14 @@
           },
           {
             "item": {
-              "id": "5cdaa99dd7f00c002412d0b2",
-              "name": "ASh-12 polymer handguard"
+              "id": "5cda9bcfd7f00c0c0b53e900",
+              "name": "ASh-12 vertical foregrip"
             }
           },
           {
             "item": {
-              "id": "5cda9bcfd7f00c0c0b53e900",
-              "name": "ASh-12 vertical foregrip"
+              "id": "5cdaa99dd7f00c002412d0b2",
+              "name": "ASh-12 polymer handguard"
             }
           },
           {
@@ -6223,14 +6223,14 @@
           },
           {
             "item": {
-              "id": "5cc700cae4a949035e43ba72",
-              "name": "FN P90 buttpad"
+              "id": "5cc700b9e4a949000f0f0f25",
+              "name": "FN P90 stock"
             }
           },
           {
             "item": {
-              "id": "5cc700b9e4a949000f0f0f25",
-              "name": "FN P90 stock"
+              "id": "5cc700cae4a949035e43ba72",
+              "name": "FN P90 buttpad"
             }
           },
           {
@@ -6469,20 +6469,20 @@
           },
           {
             "item": {
-              "id": "5d2f259b48f0355a844acd74",
-              "name": "HK MP5K polymer handguard"
-            }
-          },
-          {
-            "item": {
               "id": "5d2f261548f03576f500e7b7",
               "name": "HK MP5K 9x19 upper receiver"
             }
           },
           {
             "item": {
-              "id": "5926d2be86f774134d668e4e",
-              "name": "HK MP5 Drum rear sight"
+              "id": "5d2f25bc48f03502573e5d85",
+              "name": "HK MP5K End Cap stock"
+            }
+          },
+          {
+            "item": {
+              "id": "5d2f259b48f0355a844acd74",
+              "name": "HK MP5K polymer handguard"
             }
           },
           {
@@ -6493,8 +6493,8 @@
           },
           {
             "item": {
-              "id": "5d2f25bc48f03502573e5d85",
-              "name": "HK MP5K End Cap stock"
+              "id": "5926d2be86f774134d668e4e",
+              "name": "HK MP5 Drum rear sight"
             }
           }
         ]
@@ -6733,6 +6733,12 @@
           },
           {
             "item": {
+              "id": "5d3eb536a4b9363b1f22f8e2",
+              "name": "FN Five-seveN MK2 front sight"
+            }
+          },
+          {
+            "item": {
               "id": "5d3eb4aba4b93650d64e497d",
               "name": "FN Five-seveN MK2 rear sight"
             }
@@ -6742,12 +6748,6 @@
               "id": "5d3eb5eca4b9363b1f22f8e4",
               "name": "FN Five-seveN 5.7x28 20-round magazine"
             }
-          },
-          {
-            "item": {
-              "id": "5d3eb536a4b9363b1f22f8e2",
-              "name": "FN Five-seveN MK2 front sight"
-            }
           }
         ]
       },
@@ -6755,12 +6755,6 @@
         "id": "5d43021ca4b9362eab4b5e25",
         "name": "Lone Star TX-15 DML 5.56x45 carbine",
         "containsItems": [
-          {
-            "item": {
-              "id": "5d4405aaa4b9361e6a4e6bd3",
-              "name": "TX-15 5.56x45 Lightweight upper receiver"
-            }
-          },
           {
             "item": {
               "id": "55802f5d4bdc2dac148b458f",
@@ -6775,20 +6769,26 @@
           },
           {
             "item": {
+              "id": "5d4405aaa4b9361e6a4e6bd3",
+              "name": "TX-15 5.56x45 Lightweight upper receiver"
+            }
+          },
+          {
+            "item": {
               "id": "5d440b93a4b9364276578d4b",
               "name": "AR-15 5.56x45 18 inch barrel"
             }
           },
           {
             "item": {
-              "id": "5d440625a4b9361eec4ae6c5",
-              "name": "AR-15 Thunder Beast Arms 223CB 5.56x45 muzzle brake"
+              "id": "5d44064fa4b9361e4f6eb8b5",
+              "name": "Thunder Beast Arms Ultra 5 sound suppressor"
             }
           },
           {
             "item": {
-              "id": "5d44064fa4b9361e4f6eb8b5",
-              "name": "Thunder Beast Arms Ultra 5 sound suppressor"
+              "id": "5d440625a4b9361eec4ae6c5",
+              "name": "AR-15 Thunder Beast Arms 223CB 5.56x45 muzzle brake"
             }
           },
           {
@@ -6853,8 +6853,8 @@
           },
           {
             "item": {
-              "id": "5d3eb536a4b9363b1f22f8e2",
-              "name": "FN Five-seveN MK2 front sight"
+              "id": "5d3eb5eca4b9363b1f22f8e4",
+              "name": "FN Five-seveN 5.7x28 20-round magazine"
             }
           },
           {
@@ -6865,8 +6865,8 @@
           },
           {
             "item": {
-              "id": "5d3eb5eca4b9363b1f22f8e4",
-              "name": "FN Five-seveN 5.7x28 20-round magazine"
+              "id": "5d3eb536a4b9363b1f22f8e2",
+              "name": "FN Five-seveN MK2 front sight"
             }
           }
         ]
@@ -6889,14 +6889,14 @@
           },
           {
             "item": {
-              "id": "5dcbe9431e1f4616d354987e",
-              "name": "MDR 7.62x51 16 inch barrel"
+              "id": "5dcbd6b46ec07c0c4347a564",
+              "name": "MDR handguard (Black)"
             }
           },
           {
             "item": {
-              "id": "5dcbd6b46ec07c0c4347a564",
-              "name": "MDR handguard (Black)"
+              "id": "5dcbe9431e1f4616d354987e",
+              "name": "MDR 7.62x51 16 inch barrel"
             }
           },
           {
@@ -7393,14 +7393,20 @@
         "containsItems": [
           {
             "item": {
+              "id": "5de653abf76fdc1ce94a5a2a",
+              "name": "VPO-215 \"Gornostay\" .366 TKM 4-round magazine"
+            }
+          },
+          {
+            "item": {
               "id": "5de655be4a9f347bc92edb88",
               "name": "VPO-215 \"Gornostay\" stock"
             }
           },
           {
             "item": {
-              "id": "5de653abf76fdc1ce94a5a2a",
-              "name": "VPO-215 \"Gornostay\" .366 TKM 4-round magazine"
+              "id": "5de65547883dde217541644b",
+              "name": "VPO-215 \"Gornostay\" .366TKM 23 inch barrel"
             }
           },
           {
@@ -7414,12 +7420,6 @@
               "id": "5de6558e9f98ac2bc65950fc",
               "name": "VPO-215 \"Gornostay\" scope rail mount"
             }
-          },
-          {
-            "item": {
-              "id": "5de65547883dde217541644b",
-              "name": "VPO-215 \"Gornostay\" .366TKM 23 inch barrel"
-            }
           }
         ]
       },
@@ -7429,26 +7429,26 @@
         "containsItems": [
           {
             "item": {
-              "id": "5de8eac42a78646d96665d91",
-              "name": "MP9 9x19 30-round magazine"
-            }
-          },
-          {
-            "item": {
               "id": "5de910da8b6c4240ba2651b5",
               "name": "MP9 stock"
             }
           },
           {
             "item": {
-              "id": "5de8fbad2fbe23140d3ee9c4",
-              "name": "MP9-N vertical foregrip"
+              "id": "5de8e67c4a9f347bc92edbd7",
+              "name": "MP9-N 9x19 upper receiver"
             }
           },
           {
             "item": {
-              "id": "5de8e67c4a9f347bc92edbd7",
-              "name": "MP9-N 9x19 upper receiver"
+              "id": "5de8eac42a78646d96665d91",
+              "name": "MP9 9x19 30-round magazine"
+            }
+          },
+          {
+            "item": {
+              "id": "5de8fbad2fbe23140d3ee9c4",
+              "name": "MP9-N vertical foregrip"
             }
           },
           {
@@ -7477,26 +7477,26 @@
         "containsItems": [
           {
             "item": {
-              "id": "5df25b6c0b92095fd441e4cf",
-              "name": "ORSIS T-5000M 7.62x51 5-round magazine"
-            }
-          },
-          {
-            "item": {
-              "id": "5df35e7f2a78646d96665dd4",
-              "name": "ORSIS T-5000M 7.62x51 muzzle brake-compensator"
-            }
-          },
-          {
-            "item": {
               "id": "5df256570dee1b22f862e9c4",
               "name": "T-5000M 7.62x51 660mm barrel"
             }
           },
           {
             "item": {
+              "id": "5df25b6c0b92095fd441e4cf",
+              "name": "ORSIS T-5000M 7.62x51 5-round magazine"
+            }
+          },
+          {
+            "item": {
               "id": "5df35e59c41b2312ea3334d5",
               "name": "ORSIS T-5000M aluminium body"
+            }
+          },
+          {
+            "item": {
+              "id": "5df35e7f2a78646d96665dd4",
+              "name": "ORSIS T-5000M 7.62x51 muzzle brake-compensator"
             }
           },
           {
@@ -7525,6 +7525,12 @@
           },
           {
             "item": {
+              "id": "5df35ddddfc58d14537c2036",
+              "name": "ORSIS T-5000M stock"
+            }
+          },
+          {
+            "item": {
               "id": "5df38a5fb74cd90030650cb6",
               "name": "ORSIS T-5000M pistol grip"
             }
@@ -7533,12 +7539,6 @@
             "item": {
               "id": "5df35e970b92095fd441e4d2",
               "name": "ORSIS T-5000M scope mount"
-            }
-          },
-          {
-            "item": {
-              "id": "5df35ddddfc58d14537c2036",
-              "name": "ORSIS T-5000M stock"
             }
           }
         ]
@@ -7555,8 +7555,8 @@
           },
           {
             "item": {
-              "id": "5df8e4080b92095fd441e594",
-              "name": "SR-25 7.62x51 upper receiver"
+              "id": "5df8f541c41b2312ea3335e3",
+              "name": "AR-10 7.62x51 KAC 20-round steel magazine"
             }
           },
           {
@@ -7573,14 +7573,8 @@
           },
           {
             "item": {
-              "id": "5df8f541c41b2312ea3335e3",
-              "name": "AR-10 7.62x51 KAC 20-round steel magazine"
-            }
-          },
-          {
-            "item": {
-              "id": "5dfa3cd1b33c0951220c079b",
-              "name": "AR-10 KAC QDC 7.62x51 flash suppressor kit"
+              "id": "5df8e4080b92095fd441e594",
+              "name": "SR-25 7.62x51 upper receiver"
             }
           },
           {
@@ -7591,8 +7585,8 @@
           },
           {
             "item": {
-              "id": "5dfa3d950dee1b22f862eae0",
-              "name": "KAC Folding Micro front sight"
+              "id": "5dfa3cd1b33c0951220c079b",
+              "name": "AR-10 KAC QDC 7.62x51 flash suppressor kit"
             }
           },
           {
@@ -7605,6 +7599,12 @@
             "item": {
               "id": "5df916dfbb49d91fb446d6b9",
               "name": "AR-10 KAC \"URX 4\" 14.5 inch handguard"
+            }
+          },
+          {
+            "item": {
+              "id": "5dfa3d950dee1b22f862eae0",
+              "name": "KAC Folding Micro front sight"
             }
           },
           {
@@ -7639,14 +7639,14 @@
           },
           {
             "item": {
-              "id": "5de8fb539f98ac2bc659513a",
-              "name": "MP9 rear sight"
+              "id": "5e0090f7e9dc277128008b93",
+              "name": "MP9 9x19 upper receiver"
             }
           },
           {
             "item": {
-              "id": "5e0090f7e9dc277128008b93",
-              "name": "MP9 9x19 upper receiver"
+              "id": "5de8fb539f98ac2bc659513a",
+              "name": "MP9 rear sight"
             }
           },
           {
@@ -7741,6 +7741,12 @@
         "containsItems": [
           {
             "item": {
+              "id": "5e848d2eea0a7c419c2f9bfd",
+              "name": "KS-23 23x75 700mm barrel"
+            }
+          },
+          {
+            "item": {
               "id": "5e848d51e4dbc5266a4ec63b",
               "name": "KS-23M forestock"
             }
@@ -7755,12 +7761,6 @@
             "item": {
               "id": "5e848db4681bea2ada00daa9",
               "name": "KS-23 wooden stock"
-            }
-          },
-          {
-            "item": {
-              "id": "5e848d2eea0a7c419c2f9bfd",
-              "name": "KS-23 23x75 700mm barrel"
             }
           }
         ]
@@ -8077,14 +8077,14 @@
           },
           {
             "item": {
-              "id": "5f2aa47a200e2c0ee46efa71",
-              "name": "RFB handguard"
+              "id": "5f2aa493cd375f14e15eea72",
+              "name": "RFB handguard rail mount"
             }
           },
           {
             "item": {
-              "id": "5f2aa493cd375f14e15eea72",
-              "name": "RFB handguard rail mount"
+              "id": "5f2aa47a200e2c0ee46efa71",
+              "name": "RFB handguard"
             }
           },
           {
@@ -8113,14 +8113,14 @@
           },
           {
             "item": {
-              "id": "5f3e7897ddc4f03b010e204a",
-              "name": "M45A1 Novak Lomount rear sight"
+              "id": "5f3e7823ddc4f03b010e2045",
+              "name": "M45A1 .45 ACP slide"
             }
           },
           {
             "item": {
-              "id": "5f3e7823ddc4f03b010e2045",
-              "name": "M45A1 .45 ACP slide"
+              "id": "5f3e7897ddc4f03b010e204a",
+              "name": "M45A1 Novak Lomount rear sight"
             }
           },
           {
@@ -8137,6 +8137,12 @@
           },
           {
             "item": {
+              "id": "5f3e76d86cda304dcc634054",
+              "name": "M45A1 hammer"
+            }
+          },
+          {
+            "item": {
               "id": "5f3e772a670e2a7b01739a52",
               "name": "M45A1 trigger"
             }
@@ -8145,12 +8151,6 @@
             "item": {
               "id": "5f3e777688ca2d00ad199d25",
               "name": "M45A1 slide lock"
-            }
-          },
-          {
-            "item": {
-              "id": "5f3e76d86cda304dcc634054",
-              "name": "M45A1 hammer"
             }
           }
         ]
@@ -8221,26 +8221,26 @@
           },
           {
             "item": {
-              "id": "5fb6558ad6f0b2136f2d7eb7",
-              "name": "KRISS Vector Gen.2 folding stock"
-            }
-          },
-          {
-            "item": {
               "id": "5fb65363d1409e5ca04b54f5",
               "name": "KRISS Vector .45 ACP 5 inch barrel"
             }
           },
           {
             "item": {
-              "id": "5fb6548dd1409e5ca04b54f9",
-              "name": "KRISS Vector .45 ACP thread protection cap"
+              "id": "5fb6558ad6f0b2136f2d7eb7",
+              "name": "KRISS Vector Gen.2 folding stock"
             }
           },
           {
             "item": {
               "id": "5fbb976df9986c4cff3fe5f2",
               "name": "KRISS Vector bottom rail"
+            }
+          },
+          {
+            "item": {
+              "id": "5fb6548dd1409e5ca04b54f9",
+              "name": "KRISS Vector .45 ACP thread protection cap"
             }
           },
           {
@@ -8257,14 +8257,14 @@
         "containsItems": [
           {
             "item": {
-              "id": "5fbcbd6c187fea44d52eda14",
-              "name": "MCX pistol grip"
+              "id": "55d4887d4bdc2d962f8b4570",
+              "name": "5.56x45 Colt AR-15 STANAG 30-round magazine"
             }
           },
           {
             "item": {
-              "id": "55d4887d4bdc2d962f8b4570",
-              "name": "5.56x45 Colt AR-15 STANAG 30-round magazine"
+              "id": "5fbcbd6c187fea44d52eda14",
+              "name": "MCX pistol grip"
             }
           },
           {
@@ -8317,14 +8317,14 @@
           },
           {
             "item": {
-              "id": "5fbcc437d724d907e2077d5c",
-              "name": "MPX/MCX lightweight stock"
+              "id": "5fbcc640016cce60e8341acc",
+              "name": "MCX charging handle"
             }
           },
           {
             "item": {
-              "id": "5fbcc640016cce60e8341acc",
-              "name": "MCX charging handle"
+              "id": "5fbcc437d724d907e2077d5c",
+              "name": "MPX/MCX lightweight stock"
             }
           }
         ]
@@ -8353,14 +8353,14 @@
           },
           {
             "item": {
-              "id": "5fc278107283c4046c581489",
-              "name": "Mk-18 .338 LM upper receiver"
+              "id": "5fc2369685fd526b824a5713",
+              "name": "B5 Systems Precision stock"
             }
           },
           {
             "item": {
-              "id": "5fc2369685fd526b824a5713",
-              "name": "B5 Systems Precision stock"
+              "id": "5fc278107283c4046c581489",
+              "name": "Mk-18 .338 LM upper receiver"
             }
           },
           {
@@ -8371,14 +8371,14 @@
           },
           {
             "item": {
-              "id": "5fc2360f900b1d5091531e19",
-              "name": "Mk-18 gas block"
+              "id": "5fc23636016cce60e8341b05",
+              "name": "SilencerCo AC-858 ASR .338 LM muzzle brake"
             }
           },
           {
             "item": {
-              "id": "5fc23636016cce60e8341b05",
-              "name": "SilencerCo AC-858 ASR .338 LM muzzle brake"
+              "id": "5fc2360f900b1d5091531e19",
+              "name": "Mk-18 gas block"
             }
           },
           {
@@ -8395,20 +8395,20 @@
         "containsItems": [
           {
             "item": {
-              "id": "5fc3e4ee7283c4046c5814af",
-              "name": "HK UMP polymer stock"
-            }
-          },
-          {
-            "item": {
               "id": "5fc3e466187fea44d52eda90",
               "name": "HK UMP .45 ACP 25-round magazine"
             }
           },
           {
             "item": {
-              "id": "5fc3e4a27283c4046c5814ab",
-              "name": "HK UMP .45 ACP 8 inch barrel"
+              "id": "5fc3e4ee7283c4046c5814af",
+              "name": "HK UMP polymer stock"
+            }
+          },
+          {
+            "item": {
+              "id": "5fc5396e900b1d5091531e72",
+              "name": "HK UMP side handguard rail"
             }
           },
           {
@@ -8419,8 +8419,8 @@
           },
           {
             "item": {
-              "id": "5fc5396e900b1d5091531e72",
-              "name": "HK UMP side handguard rail"
+              "id": "5fc3e4a27283c4046c5814ab",
+              "name": "HK UMP .45 ACP 8 inch barrel"
             }
           }
         ]
@@ -8443,14 +8443,20 @@
           },
           {
             "item": {
+              "id": "5fb6558ad6f0b2136f2d7eb7",
+              "name": "KRISS Vector Gen.2 folding stock"
+            }
+          },
+          {
+            "item": {
               "id": "5fb6564947ce63734e3fa1da",
               "name": "KRISS Defiance low profile flip-up rear sight"
             }
           },
           {
             "item": {
-              "id": "5fb6558ad6f0b2136f2d7eb7",
-              "name": "KRISS Vector Gen.2 folding stock"
+              "id": "5fbbc366ca32ed67276c1557",
+              "name": "KRISS Vector 9x19 5 inch barrel"
             }
           },
           {
@@ -8470,12 +8476,6 @@
               "id": "5fce0f9b55375d18a253eff2",
               "name": "KRISS Vector side rail"
             }
-          },
-          {
-            "item": {
-              "id": "5fbbc366ca32ed67276c1557",
-              "name": "KRISS Vector 9x19 5 inch barrel"
-            }
           }
         ]
       },
@@ -8485,26 +8485,26 @@
         "containsItems": [
           {
             "item": {
-              "id": "602a95edda11d6478d5a06da",
-              "name": "PL-15 9x19 barrel"
-            }
-          },
-          {
-            "item": {
               "id": "60228924961b8d75ee233c32",
               "name": "PL-15 pistol slide"
             }
           },
           {
             "item": {
-              "id": "60229948cacb6b0506369e27",
-              "name": "PL-15 rear sight"
+              "id": "602a95edda11d6478d5a06da",
+              "name": "PL-15 9x19 barrel"
             }
           },
           {
             "item": {
               "id": "60228a76d62c9b14ed777a66",
               "name": "PL-15 front sight"
+            }
+          },
+          {
+            "item": {
+              "id": "60229948cacb6b0506369e27",
+              "name": "PL-15 rear sight"
             }
           },
           {
@@ -8545,12 +8545,6 @@
           },
           {
             "item": {
-              "id": "602e3f1254072b51b239f713",
-              "name": "Soyuz-TM buffer tube"
-            }
-          },
-          {
-            "item": {
               "id": "60337f5dce399e10262255d1",
               "name": "STM-9 9x19 muzzle brake"
             }
@@ -8563,20 +8557,26 @@
           },
           {
             "item": {
+              "id": "602e3f1254072b51b239f713",
+              "name": "Soyuz-TM buffer tube"
+            }
+          },
+          {
+            "item": {
               "id": "602e620f9b513876d4338d9a",
               "name": "FAB Defense GL-CORE buttstock"
             }
           },
           {
             "item": {
-              "id": "6033749e88382f4fab3fd2c5",
-              "name": "AR-15 MASP Industries Ambidextrous Battle Charging Handle"
+              "id": "602f85fd9b513876d4338d9c",
+              "name": "STM-9 magwell"
             }
           },
           {
             "item": {
-              "id": "602f85fd9b513876d4338d9c",
-              "name": "STM-9 magwell"
+              "id": "6033749e88382f4fab3fd2c5",
+              "name": "AR-15 MASP Industries Ambidextrous Battle Charging Handle"
             }
           }
         ]
@@ -8587,14 +8587,14 @@
         "containsItems": [
           {
             "item": {
-              "id": "55802f5d4bdc2dac148b458f",
-              "name": "AR-15 Magpul MOE pistol grip (Black)"
+              "id": "59d6272486f77466146386ff",
+              "name": "AK 7.62x39 Magpul PMAG 30 GEN M3 30-round magazine"
             }
           },
           {
             "item": {
-              "id": "59d6272486f77466146386ff",
-              "name": "AK 7.62x39 Magpul PMAG 30 GEN M3 30-round magazine"
+              "id": "55802f5d4bdc2dac148b458f",
+              "name": "AR-15 Magpul MOE pistol grip (Black)"
             }
           },
           {
@@ -8617,12 +8617,6 @@
           },
           {
             "item": {
-              "id": "5bc09a30d4351e00367fb7c8",
-              "name": "Magpul MBUS Gen2 flip-up front sight"
-            }
-          },
-          {
-            "item": {
               "id": "6065dc8a132d4d12c81fd8e3",
               "name": "CMMG low profile gas block"
             }
@@ -8631,6 +8625,12 @@
             "item": {
               "id": "6065880c132d4d12c81fd8da",
               "name": "AR-10 CMMG MK3 RML9 9 inch M-LOK handguard"
+            }
+          },
+          {
+            "item": {
+              "id": "5bc09a30d4351e00367fb7c8",
+              "name": "Magpul MBUS Gen2 flip-up front sight"
             }
           },
           {
@@ -8665,12 +8665,6 @@
         "containsItems": [
           {
             "item": {
-              "id": "6076c87f232e5a31c233d50e",
-              "name": "MP-155 12ga 6-shell magazine"
-            }
-          },
-          {
-            "item": {
               "id": "6076c1b9f2cb2e02a42acedc",
               "name": "MP-155 510mm barrel"
             }
@@ -8685,6 +8679,12 @@
             "item": {
               "id": "607d5a891246154cad35d6aa",
               "name": "MP-155 walnut stock"
+            }
+          },
+          {
+            "item": {
+              "id": "6076c87f232e5a31c233d50e",
+              "name": "MP-155 12ga 6-shell magazine"
             }
           }
         ]
@@ -8773,14 +8773,14 @@
           },
           {
             "item": {
-              "id": "6123649463849f3d843da7c4",
-              "name": "MTs-255-12 beechwood forestock"
+              "id": "612781056f3d944a17348d60",
+              "name": "MTs-255-12 wooden stock"
             }
           },
           {
             "item": {
-              "id": "612781056f3d944a17348d60",
-              "name": "MTs-255-12 wooden stock"
+              "id": "6123649463849f3d843da7c4",
+              "name": "MTs-255-12 beechwood forestock"
             }
           }
         ]
@@ -8833,26 +8833,20 @@
           },
           {
             "item": {
-              "id": "61816dfa6ef05c2ce828f1ad",
-              "name": "FN SCAR side rail"
-            }
-          },
-          {
-            "item": {
               "id": "61816df1d3a39d50044c139e",
               "name": "FN SCAR bottom rail"
             }
           },
           {
             "item": {
-              "id": "61825d06d92c473c770215de",
-              "name": "FN SCAR folding polymer stock (FDE)"
+              "id": "61816dfa6ef05c2ce828f1ad",
+              "name": "FN SCAR side rail"
             }
           },
           {
             "item": {
-              "id": "61825d24d3a39d50044c13af",
-              "name": "FN SCAR cheek rest (FDE)"
+              "id": "61825d06d92c473c770215de",
+              "name": "FN SCAR folding polymer stock (FDE)"
             }
           },
           {
@@ -8865,6 +8859,12 @@
             "item": {
               "id": "618167616ef05c2ce828f1a8",
               "name": "FN SCAR rubber buttpad"
+            }
+          },
+          {
+            "item": {
+              "id": "61825d24d3a39d50044c13af",
+              "name": "FN SCAR cheek rest (FDE)"
             }
           },
           {
@@ -8893,14 +8893,14 @@
           },
           {
             "item": {
-              "id": "617155ee50224f204c1da3cd",
-              "name": "HK Adjustable Buttstock"
+              "id": "617153016c780c1e710c9a2f",
+              "name": "HK G28 buffer tube"
             }
           },
           {
             "item": {
-              "id": "617153016c780c1e710c9a2f",
-              "name": "HK G28 buffer tube"
+              "id": "617155ee50224f204c1da3cd",
+              "name": "HK Adjustable Buttstock"
             }
           },
           {
@@ -8929,14 +8929,14 @@
           },
           {
             "item": {
-              "id": "58d399e486f77442e0016fe7",
-              "name": "Aimpoint Micro T-1 reflex sight"
+              "id": "61714b2467085e45ef140b2c",
+              "name": "Recknagel Era-Tac Sunshade mount for Aimpoint T-1"
             }
           },
           {
             "item": {
-              "id": "61714b2467085e45ef140b2c",
-              "name": "Recknagel Era-Tac Sunshade mount for Aimpoint T-1"
+              "id": "58d399e486f77442e0016fe7",
+              "name": "Aimpoint Micro T-1 reflex sight"
             }
           },
           {
@@ -8953,14 +8953,14 @@
           },
           {
             "item": {
-              "id": "6171367e1cb55961fa0fdb36",
-              "name": "HK G28 B&T QD 7.62x51 sound suppressor"
+              "id": "61702f1b67085e45ef140b26",
+              "name": "HK417 low profile gas block"
             }
           },
           {
             "item": {
-              "id": "61702f1b67085e45ef140b26",
-              "name": "HK417 low profile gas block"
+              "id": "6171367e1cb55961fa0fdb36",
+              "name": "HK G28 B&T QD 7.62x51 sound suppressor"
             }
           },
           {
@@ -8977,14 +8977,14 @@
           },
           {
             "item": {
-              "id": "61702d8a67085e45ef140b24",
-              "name": "HK417 extended charging handle"
+              "id": "619386379fb0c665d5490dbe",
+              "name": "HK Sturmgriff foregrip"
             }
           },
           {
             "item": {
-              "id": "619386379fb0c665d5490dbe",
-              "name": "HK Sturmgriff foregrip"
+              "id": "61702d8a67085e45ef140b24",
+              "name": "HK417 extended charging handle"
             }
           }
         ]
@@ -9205,12 +9205,6 @@
           },
           {
             "item": {
-              "id": "61817865d3a39d50044c13a4",
-              "name": "FN SCAR rear flip-up sight"
-            }
-          },
-          {
-            "item": {
               "id": "61816df1d3a39d50044c139e",
               "name": "FN SCAR bottom rail"
             }
@@ -9219,6 +9213,12 @@
             "item": {
               "id": "61816fcad92c473c770215cc",
               "name": "FN SCAR front flip-up sight"
+            }
+          },
+          {
+            "item": {
+              "id": "61817865d3a39d50044c13a4",
+              "name": "FN SCAR rear flip-up sight"
             }
           },
           {
@@ -9247,14 +9247,14 @@
           },
           {
             "item": {
-              "id": "6181688c6c780c1e710c9b04",
-              "name": "FN SCAR charging handle"
+              "id": "61825d24d3a39d50044c13af",
+              "name": "FN SCAR cheek rest (FDE)"
             }
           },
           {
             "item": {
-              "id": "61825d24d3a39d50044c13af",
-              "name": "FN SCAR cheek rest (FDE)"
+              "id": "6181688c6c780c1e710c9b04",
+              "name": "FN SCAR charging handle"
             }
           }
         ]
@@ -9889,26 +9889,14 @@
           },
           {
             "item": {
-              "id": "6193d382ed0429009f543e65",
-              "name": "HK USP .45 ACP pistol slide"
-            }
-          },
-          {
-            "item": {
               "id": "6194f2912d2c397d6600348d",
               "name": "HK USP rear sight"
             }
           },
           {
             "item": {
-              "id": "6193d3be7c6c7b169525f0da",
-              "name": "HK USP hammer"
-            }
-          },
-          {
-            "item": {
-              "id": "6193d338de3cdf1d2614a6fc",
-              "name": "HK USP .45 ACP 12-round magazine"
+              "id": "6193d382ed0429009f543e65",
+              "name": "HK USP .45 ACP pistol slide"
             }
           },
           {
@@ -9919,8 +9907,20 @@
           },
           {
             "item": {
+              "id": "6193d338de3cdf1d2614a6fc",
+              "name": "HK USP .45 ACP 12-round magazine"
+            }
+          },
+          {
+            "item": {
               "id": "6193d3cded0429009f543e6a",
               "name": "HK USP trigger"
+            }
+          },
+          {
+            "item": {
+              "id": "6193d3be7c6c7b169525f0da",
+              "name": "HK USP hammer"
             }
           },
           {
@@ -10801,12 +10801,6 @@
           },
           {
             "item": {
-              "id": "619f4cee4c58466fe1228435",
-              "name": "Chiappa Rhino rear sight"
-            }
-          },
-          {
-            "item": {
               "id": "619f4d304c58466fe1228437",
               "name": "Chiappa Rhino front sight"
             }
@@ -10815,6 +10809,12 @@
             "item": {
               "id": "619f4bffd25cbd424731fb97",
               "name": "Chiappa Rhino wooden pistol grip"
+            }
+          },
+          {
+            "item": {
+              "id": "619f4cee4c58466fe1228435",
+              "name": "Chiappa Rhino rear sight"
             }
           }
         ]
@@ -10893,12 +10893,6 @@
           },
           {
             "item": {
-              "id": "622b327b267a1b13a44abea3",
-              "name": "HK G36 gas block"
-            }
-          },
-          {
-            "item": {
               "id": "6231654c71b5bc3baa1078e5",
               "name": "HK G36 6-vent handguard"
             }
@@ -10911,14 +10905,20 @@
           },
           {
             "item": {
-              "id": "622efbcb99f4ea1a4d6c9a15",
-              "name": "Hensoldt RV red dot sight"
+              "id": "622b327b267a1b13a44abea3",
+              "name": "HK G36 gas block"
             }
           },
           {
             "item": {
               "id": "622b4d7df9cfc87d675d2ded",
               "name": "HK G36 HKV 3x carry handle"
+            }
+          },
+          {
+            "item": {
+              "id": "622efbcb99f4ea1a4d6c9a15",
+              "name": "Hensoldt RV red dot sight"
             }
           }
         ]
@@ -11000,20 +11000,8 @@
         "containsItems": [
           {
             "item": {
-              "id": "625ff2ccb8c587128c1a01dd",
-              "name": "Benelli M3 Super 90 12ga 5-shell magazine cap"
-            }
-          },
-          {
-            "item": {
               "id": "6259c2c1d714855d182bad85",
               "name": "Benelli M3 Super 90 12ga 500mm barrel"
-            }
-          },
-          {
-            "item": {
-              "id": "6259c3387d6aab70bc23a18d",
-              "name": "Benelli M3 telescopic stock"
             }
           },
           {
@@ -11024,8 +11012,20 @@
           },
           {
             "item": {
+              "id": "625ff2ccb8c587128c1a01dd",
+              "name": "Benelli M3 Super 90 12ga 5-shell magazine cap"
+            }
+          },
+          {
+            "item": {
               "id": "6259c3d8012d6678ec38eeb8",
               "name": "Benelli M3 telescopic stock pistol grip"
+            }
+          },
+          {
+            "item": {
+              "id": "6259c3387d6aab70bc23a18d",
+              "name": "Benelli M3 telescopic stock"
             }
           },
           {
@@ -11054,26 +11054,26 @@
         "containsItems": [
           {
             "item": {
-              "id": "571659bb2459771fb2755a12",
-              "name": "AR-15 Damage Industries ECS pistol grip (FDE)"
-            }
-          },
-          {
-            "item": {
               "id": "55d4ae6c4bdc2d8b2f8b456e",
               "name": "High Standard M4SS Stock"
             }
           },
           {
             "item": {
-              "id": "6284bd5f95250a29bc628a30",
-              "name": "Milkor M2A1 grenade launcher reflex sight"
+              "id": "571659bb2459771fb2755a12",
+              "name": "AR-15 Damage Industries ECS pistol grip (FDE)"
             }
           },
           {
             "item": {
               "id": "627bce33f21bc425b06ab967",
               "name": "M32A1 40mm cylinder"
+            }
+          },
+          {
+            "item": {
+              "id": "6284bd5f95250a29bc628a30",
+              "name": "Milkor M2A1 grenade launcher reflex sight"
             }
           }
         ]
@@ -11114,14 +11114,20 @@
           },
           {
             "item": {
+              "id": "628120c21d5df4475f46a337",
+              "name": "AI AXMC AT X Top Rail "
+            }
+          },
+          {
+            "item": {
               "id": "628120d309427b40ab14e76d",
               "name": "AI AXMC Adapter Kit short length rail"
             }
           },
           {
             "item": {
-              "id": "628120c21d5df4475f46a337",
-              "name": "AI AXMC AT X Top Rail "
+              "id": "628120dd308cb521f87a8fa1",
+              "name": "AI AXMC Adapter Kit medium length rail"
             }
           },
           {
@@ -11138,26 +11144,20 @@
           },
           {
             "item": {
-              "id": "628120dd308cb521f87a8fa1",
-              "name": "AI AXMC Adapter Kit medium length rail"
-            }
-          },
-          {
-            "item": {
               "id": "628121434fa03b6b6c35dc6a",
               "name": "AI AXMC .338 LM 28 inch barrel"
             }
           },
           {
             "item": {
-              "id": "628120621d5df4475f46a335",
-              "name": "AI AXMC thread protection cap"
+              "id": "62812081d23f207deb0ab216",
+              "name": "AI .338 LM Tactical Muzzle Brake "
             }
           },
           {
             "item": {
-              "id": "62812081d23f207deb0ab216",
-              "name": "AI .338 LM Tactical Muzzle Brake "
+              "id": "628120621d5df4475f46a335",
+              "name": "AI AXMC thread protection cap"
             }
           },
           {
@@ -12296,14 +12296,14 @@
           },
           {
             "item": {
-              "id": "628a664bccaab13006640e47",
-              "name": "AK TangoDown Battle Grip pistol grip"
+              "id": "628a66b41d5e41750e314f34",
+              "name": "AR-10 Dead Air Keymount 7.62x51 muzzle brake"
             }
           },
           {
             "item": {
-              "id": "628a66b41d5e41750e314f34",
-              "name": "AR-10 Dead Air Keymount 7.62x51 muzzle brake"
+              "id": "628a664bccaab13006640e47",
+              "name": "AK TangoDown Battle Grip pistol grip"
             }
           },
           {
@@ -12314,14 +12314,14 @@
           },
           {
             "item": {
-              "id": "628a7b23b0f75035732dd565",
-              "name": "AK RD Enhanced V2 Rear Sight"
+              "id": "628a6678ccaab13006640e49",
+              "name": "AKM/AK-74 RD AK to M4 buffer tube adapter"
             }
           },
           {
             "item": {
-              "id": "628a6678ccaab13006640e49",
-              "name": "AKM/AK-74 RD AK to M4 buffer tube adapter"
+              "id": "628a7b23b0f75035732dd565",
+              "name": "AK RD Enhanced V2 Rear Sight"
             }
           },
           {
@@ -12356,14 +12356,14 @@
           },
           {
             "item": {
-              "id": "628b9be6cff66b70c002b14c",
-              "name": "AK-545 SAG railed dust cover"
+              "id": "628b916469015a4e1711ed8d",
+              "name": "AK-545 SAG Mk.3 handguard"
             }
           },
           {
             "item": {
-              "id": "628b916469015a4e1711ed8d",
-              "name": "AK-545 SAG Mk.3 handguard"
+              "id": "628b9be6cff66b70c002b14c",
+              "name": "AK-545 SAG railed dust cover"
             }
           },
           {
@@ -12410,6 +12410,12 @@
         "containsItems": [
           {
             "item": {
+              "id": "628b8d83717774443b15e248",
+              "name": "AK-545 SAG Mk. 2.1 gas tube"
+            }
+          },
+          {
+            "item": {
               "id": "628b916469015a4e1711ed8d",
               "name": "AK-545 SAG Mk.3 handguard"
             }
@@ -12422,20 +12428,14 @@
           },
           {
             "item": {
-              "id": "628b8d83717774443b15e248",
-              "name": "AK-545 SAG Mk. 2.1 gas tube"
+              "id": "5943eeeb86f77412d6384f6b",
+              "name": "AK-74 PWS CQB 74 5.45x39 muzzle brake"
             }
           },
           {
             "item": {
               "id": "628b9471078f94059a4b9bfb",
               "name": "AK-545 SAG rear sight"
-            }
-          },
-          {
-            "item": {
-              "id": "5943eeeb86f77412d6384f6b",
-              "name": "AK-74 PWS CQB 74 5.45x39 muzzle brake"
             }
           },
           {

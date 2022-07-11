@@ -21,9 +21,8 @@ namespace RatStash
         public Ext_Ammo(int pen, Ammo ammo)
         {
             PropertyInfo[] properties = typeof(Ammo).GetProperties();
-            foreach (PropertyInfo p in properties)
-                if (p.CanRead && p.CanWrite)
-                    p.SetMethod.Invoke(this, new object[] { p.GetMethod.Invoke(ammo, null) });
+            foreach (var p in properties.Where(prop => prop.CanRead && prop.CanWrite))
+                p.SetMethod.Invoke(this, new object[] { p.GetMethod.Invoke(ammo, null) });
 
             PenetrationPower = pen;
         }
@@ -132,22 +131,27 @@ namespace TarkovToy.ExtensionMethods
         // Look at the old method where a "batch" of options are made and then chosen from, eg, stocks with rubber pads vs expensive stocks. Implement an efficency grading comparision.
         public static CompoundItem recursiveFit(CompoundItem CI, IEnumerable<WeaponMod> mods, string mode)
         {
-            foreach(Slot slot in CI.Slots)
+            foreach (Slot slot in CI.Slots)
             {
                 List<WeaponMod> shortList = mods.Where(item => slot.Filters[0].Whitelist.Contains(item.Id)).ToList();
+                List<WeaponMod> candidatesList = new();
+
+                candidatesList.AddRange(shortList.Select(item => (WeaponMod)recursiveFit(item, mods, mode)));
+
                 if (shortList.Count > 0)
                 {
+                    // repalce this with a switch when you add more options.
                     if (mode.Equals("ergo"))
-                        shortList = shortList.OrderByDescending(x => x.Ergonomics).ToList();
+                        candidatesList = candidatesList.OrderByDescending(x => getModTotals(x).t_ergo).ToList();
                     else if (mode.Equals("recoil"))
-                        shortList = shortList.OrderBy(x => x.Recoil).ToList();
+                        candidatesList = candidatesList.OrderBy(x => getModTotals(x).t_recoil).ToList();
 
-                    WeaponMod candidate = shortList.First();
-
-                    slot.ContainedItem = recursiveFit(candidate, mods, mode);
+                    slot.ContainedItem = candidatesList.First();
                 }
+                
                 slot.ParentItem = CI;
             }
+
             return CI;
         }
 
@@ -175,6 +179,16 @@ namespace TarkovToy.ExtensionMethods
             float finalRecoil = w.RecoilForceUp + (w.RecoilForceUp * (ts.t_recoil / 100));
 
             return (finalPrice, finalErgo, finalRecoil) ;
+        }
+        public static (int t_price, int t_ergo, float t_recoil) getModTotals(this WeaponMod wm)
+        {
+            var ts = accumulateTotals(wm.Slots);
+
+            int finalPrice = wm.CreditsPrice + ts.t_price;
+            int finalErgo = (int) wm.Ergonomics + ts.t_ergo;
+            float finalRecoil = wm.Recoil + ts.t_recoil; //remember, when we call this for a mod, we don't know the weapon!
+
+            return (finalPrice, finalErgo, finalRecoil);
         }
 
         public static (int t_price, int t_ergo, float t_recoil) accumulateTotals(this List<Slot> slots)

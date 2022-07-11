@@ -83,7 +83,7 @@ string[] traderNames =
       "Prapor", "Therapist", "Fence", "Skier",
       "Peacekeeper","Mechanic", "Ragman", "Jaeger"
     };
-int[] traderLevels = { 1, 2 };
+int[] traderLevels = { 1 };
 
 List<string> traderMask = new List<string>();
 
@@ -211,7 +211,10 @@ Console.WriteLine("Filt. Guns: " + FilteredGuns.Count);
 Console.WriteLine("Filt. Ammo: " + FilteredAmmo.Count);
 
 // These are just here really to plug in to existing code
-var assaultRifles = FilteredGuns.Where(c => c is AssaultRifle || c is AssaultCarbine || c is Smg).ToList();
+var assaultRifles = FilteredGuns.Where(c => c is AssaultRifle).ToList();
+
+//assaultRifles = assaultRifles.Where(x => x.Name.Contains("Kalashnikov AK-74N")).ToList();  // In case of need to debug, break glass
+
 var mods = FilteredMods.OfType<WeaponMod>();
 
 List<(Weapon, Ext_Ammo)> ergos = new ();
