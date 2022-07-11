@@ -173,7 +173,7 @@ foreach (var pair in BaseWeaponBundles)
     Weapon temp = processedWeapons.FirstOrDefault(x => x.Id == pair.Key);
     if (temp != null)
     {
-        temp = Recursion.addBaseAttachmentsFlat(temp, pair.Value, AllMods.OfType<WeaponMod>());
+        temp = Recursion.addBaseAttachments(temp, pair.Value, AllMods.OfType<WeaponMod>());
         int index = processedWeapons.FindIndex(x => x.Id == temp.Id);
         processedWeapons.RemoveAt(index);
         processedWeapons.Add(temp);
