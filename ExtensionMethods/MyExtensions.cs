@@ -29,8 +29,43 @@ namespace RatStash
     }
 }
 
+namespace Information
+{
+   
+}
+
 namespace TarkovToy.ExtensionMethods
 {
+    // Make this be a flywheel
+    // Need to look at how the trader offers are made, and then consider how info is paired
+    // It may not be possible to have flyweights due to trader price fuckery with weapoon deals
+    public class Trader
+    {
+        public string? Id { get; set; }
+        public string? Name { get; set; }
+
+        // Trader Info
+        public int TraderLLRequiredToBuy { get; set; }
+        public int PlayerLevelRequiredToBuy { get; set; }
+        public int BasePrice { get; set; }
+        public MarketTrader? BuyForFrom { get; set; } // Who sells the thing cheapest???
+        public MarketTrader? SellForTo { get; set; } // Who will give the best price when sold to???
+
+        // Fleamarket Info
+        public int low24hPrice { get; set; }
+        public int exp24hPrice { get; set; } // Expected price is simply the midpoint between low and avg
+        public int avg24hPrice { get; set; }
+        public int high24hPrice { get; set; }
+    }
+
+    public class MarketTrader
+    {
+        public string? TraderName { get; set; }
+        public int PriceRUB { get; set; } // Use this for comparisions
+        public int Price { get; set; }
+        public string? Currency { get; set; } // Make this an enum later
+    }
+
     public static class API_ExtensionMethods
     {
         //TODO: setup some of these
@@ -60,9 +95,30 @@ namespace TarkovToy.ExtensionMethods
             {
                 Console.WriteLine(x.Name);
                 Console.WriteLine(x.Id);
-                Console.WriteLine("e: " + x.Ergonomics);
-                Console.WriteLine("r: " + x.Recoil);
-                Console.WriteLine("c: " + x.CreditsPrice);
+                //Console.WriteLine("e: " + x.Ergonomics);
+                //Console.WriteLine("r: " + x.Recoil);
+                //Console.WriteLine("c: " + x.CreditsPrice);
+                //Console.WriteLine("");
+                x.ConflictingItems.ForEach(y => Console.WriteLine(y));
+            });
+        }
+        public static void inspectList(List<WeaponMod> aList, List<WeaponMod> allmods)
+        {
+            aList.ForEach((x) =>
+            {
+                Console.WriteLine(x.Name);
+                Console.WriteLine(x.Id);
+                //Console.WriteLine("e: " + x.Ergonomics);
+                //Console.WriteLine("r: " + x.Recoil);
+                //Console.WriteLine("c: " + x.CreditsPrice);
+                //Console.WriteLine("");
+                x.ConflictingItems = x.ConflictingItems.Where(x => allmods.Any(y => y.Id==x)).ToList();
+                x.ConflictingItems.ForEach(y => {
+                    Console.WriteLine(y);
+                    var match = allmods.FirstOrDefault(z => z.Id == y);
+                    if (match != null)
+                        Console.WriteLine("  " + match.Name + " type: " + match.GetType().Name);
+                });
                 Console.WriteLine("");
             });
         }
@@ -71,6 +127,95 @@ namespace TarkovToy.ExtensionMethods
 
     public static class Recursion
     {
+        public static bool sameOrWorseStats(WeaponMod original , WeaponMod candidate)
+        {
+            bool result = false;
+
+            if (original.Ergonomics >= candidate.Ergonomics && original.Recoil <= candidate.Recoil)
+                result = true;
+
+            return result;
+        }
+        public static bool dasBOOT((Trader md, WeaponMod wm) original, (Trader md, WeaponMod wm) candidate)
+        {
+            bool result = true;
+
+            int original_PurchaseValue = original.md.BuyForFrom.PriceRUB;
+            int original_SaleValue = original.md.SellForTo.PriceRUB;
+
+            int candidate_PurchaseValue = candidate.md.BuyForFrom.PriceRUB;
+            int candidate_SaleValue = candidate.md.SellForTo.PriceRUB;
+
+            if (original_SaleValue < candidate_PurchaseValue)
+                result = false;
+
+            return result;
+        }
+
+        public static Weapon JankyCloner (Weapon original)
+        {
+            Weapon clone = new();
+
+            PropertyInfo[] properties = typeof(Weapon).GetProperties();
+            foreach (var p in properties.Where(prop => prop.CanRead && prop.CanWrite))
+                p.SetMethod.Invoke(clone, new object[] { p.GetMethod.Invoke(original, null) });
+
+            return clone;
+        }
+
+        public static bool HeadToHead(WeaponMod excluder, IEnumerable<WeaponMod> mods, Weapon CI)
+        {
+            // Clone the CI into two dummies
+            Weapon excluder_dummy = new(); excluder_dummy = JankyCloner(CI);
+            Weapon candidate_dummy = new(); candidate_dummy = JankyCloner(CI);
+
+            // Gonna make sure there are no confounding items
+            excluder_dummy.Slots.ForEach(x=>x.ContainedItem=null); 
+            candidate_dummy.Slots.ForEach(x => x.ContainedItem = null);
+
+            // Attach the excluder to the dummy
+            var target = excluder_dummy.Slots.FirstOrDefault(x => x.Filters[0].Whitelist.Contains(excluder.Id));
+            if (target != null)
+                //target.ContainedItem = excluder; 
+            // Wait do we even need a dummy for this? We are comparing the excluder against the possibilities of its list
+            
+
+            // Filter out any conflicting item IDs which aren't in the master list
+            excluder.ConflictingItems = excluder.ConflictingItems.Where(x => mods.Any(y => y.Id == x)).ToList();
+
+            int best_ergo = 0;
+            float best_recoil = 0;
+
+            // Don't need to interate through all items, as the add base attachments method will build a version of that weapon with the best combo
+            candidate_dummy = hacky_addBaseAttachments(candidate_dummy, excluder.ConflictingItems, mods, "recoil");
+
+            var c_d_res = accumulateTotals(candidate_dummy.Slots);
+            var e_d_res = getModTotals(excluder);
+
+            if (c_d_res.t_ergo > e_d_res.t_ergo || c_d_res.t_recoil < e_d_res.t_recoil)
+                Console.WriteLine("bastard");
+
+            candidate_dummy = hacky_addBaseAttachments(candidate_dummy, excluder.ConflictingItems, mods, "ergo");
+
+            c_d_res = accumulateTotals(candidate_dummy.Slots);
+            e_d_res = getModTotals(excluder);
+
+            if (c_d_res.t_ergo > e_d_res.t_ergo || c_d_res.t_recoil < e_d_res.t_recoil)
+                Console.WriteLine("shit");
+
+            // Just need to set this up so that it correctly has a process flow control bertween recoil and ergo.
+            // Need to check that the limited list is accurate and that an open list wouldn't be better.
+            return false;
+        }
+        public static Weapon hacky_addBaseAttachments(this Weapon weapon, List<string> baseAttachments, IEnumerable<WeaponMod> mods, string mode)
+        {
+            List<WeaponMod> attachmentsList = mods.Where(x => baseAttachments.Contains(x.Id)).ToList();
+            weapon = (Weapon) recursiveFit(weapon, attachmentsList, mode);
+
+            //weapon.Slots = addBaseAttachmentsFlatLoop(weapon.Slots, attachmentsList, weapon);
+            return weapon;
+        }
+
         public static Weapon addBaseAttachments(this Weapon weapon, List<string> baseAttachments, IEnumerable<WeaponMod> mods)
         {
             List<WeaponMod> attachmentsList = mods.Where(x => baseAttachments.Contains(x.Id)).ToList();
@@ -88,10 +233,16 @@ namespace TarkovToy.ExtensionMethods
             // Need to make the efficency ranking as a helper methods used in OrderBy()
             // Need to add guard condition for if the stat is 0, then it sorts by the other stat
             // Need to add guard that if the module in the slot is a default && the new mod is equal or worse in that stat, skip.
-            // Ieda: "Marginal benefit" check that sees if the value of sold default - cost of bought replacement is positive
+
+            // Idea: "Marginal benefit" check that sees if the value of sold default - cost of bought replacement is positive
+            // Idea: Use a simple cull method where items which match or are less than the default mod are removed from shortlist
 
             // TODO: Implement a vulgar efficency comparision of just stat/credit value
             // TODO: Implement a way of comparing vs blocking items and selecting for the better option.
+
+
+            // NOTE: One edge case is muzzle devices; it isn't a choice between ergo and recoil, but loud and supression and for both wanting lowest recoil.
+            // This edge case has been somewhat accoutned for, but needs a review
 
             foreach (Slot slot in CI.Slots)
             {
@@ -103,25 +254,48 @@ namespace TarkovToy.ExtensionMethods
                 if (shortList.Count > 0)
                 {
                     // repalce this with a switch when you add more options.
-                    if (mode.Equals("ergo"))
+                    if (mode.Equals("ergo") && !slot.Name.Contains("mod_muzzle"))
                     {
-                        candidatesList = candidatesList.OrderByDescending(x => getModTotals(x).t_ergo).ToList();
+                        // Simple cull step if the slot currently has a default option
+                        if (slot.ContainedItem != null)
+                        {
+                            var original = (WeaponMod)slot.ContainedItem;
+                            candidatesList = candidatesList.Where(item => getModTotals(item).t_ergo > getModTotals(original).t_ergo).ToList();
+                        }
+                        if (candidatesList.Count > 0)
+                        {
+                            // Sort options by trait
+                            candidatesList = candidatesList.OrderByDescending(x => getModTotals(x).t_ergo).ToList();
 
-                        // Check if there are multiple best options and then sort by lowest price to best
-                        candidatesList = candidatesList.Where(x => getModTotals(x).t_ergo == getModTotals(candidatesList.First()).t_ergo).ToList();
-                        candidatesList = candidatesList.OrderBy(x => getModTotals(x).t_price).ToList();
+                            // Check if there are multiple best options and then sort by lowest price to best
+                            candidatesList = candidatesList.Where(x => getModTotals(x).t_ergo == getModTotals(candidatesList.First()).t_ergo).ToList();
+                            candidatesList = candidatesList.OrderBy(x => getModTotals(x).t_price).ToList();
+                        }
+                        
                     }
-                    else if (mode.Equals("recoil"))
+                    else if (mode.Equals("recoil") || slot.Name.Contains("mod_muzzle") == true)
                     {
-                        candidatesList = candidatesList.OrderBy(x => getModTotals(x).t_recoil).ToList();
+                        // Simple cull step if the slot currently has a default option
+                        if (slot.ContainedItem != null)
+                        {
+                            var original = (WeaponMod)slot.ContainedItem;
+                            candidatesList = candidatesList.Where(item => getModTotals(item).t_recoil < getModTotals(original).t_recoil).ToList();
+                        }
 
-                        // Check if there are multiple best options and then sort by lowest price to best
-                        candidatesList = candidatesList.Where(x => getModTotals(x).t_recoil == getModTotals(candidatesList.First()).t_recoil).ToList();
-                        candidatesList = candidatesList.OrderBy(x => getModTotals(x).t_price).ToList();
+                        if (candidatesList.Count > 0)
+                        {
+                            // Sort options by trait
+                            candidatesList = candidatesList.OrderBy(x => getModTotals(x).t_recoil).ToList();
+
+                            // Check if there are multiple best options and then sort by lowest price to best
+                            candidatesList = candidatesList.Where(x => getModTotals(x).t_recoil == getModTotals(candidatesList.First()).t_recoil).ToList();
+                            candidatesList = candidatesList.OrderBy(x => getModTotals(x).t_price).ToList();
+                        }
                     }
-                    slot.ContainedItem = candidatesList.First();
+                    if(candidatesList.Count > 0)
+                        slot.ContainedItem = candidatesList.First();
                 }
-                
+
                 slot.ParentItem = CI;
             }
 

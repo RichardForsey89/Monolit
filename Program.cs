@@ -42,7 +42,6 @@ JObject AmmoPenetrationJSON;
 
 using (var httpClient = new HttpClient())
 {
-
     //Http response message
     var httpResponse = await httpClient.PostAsJsonAsync("https://api.tarkov.dev/graphql", data_traders);
     var httpResponse2 = await httpClient.PostAsJsonAsync("https://api.tarkov.dev/graphql", data_baseAttachments);
@@ -69,6 +68,16 @@ using (var httpClient = new HttpClient())
     }
 }
 
+//JObject bsgdata;
+//bsgdata = JObject.Parse("bsg-data.json");
+
+//var split = bsgdata.SelectTokens("$.[*]").ToList();
+//List<JToken> filtered = new List<JToken>();
+//foreach (var token in split)
+//{
+//    token.SelectToken("$['5a33e75ac4a2826c6e06d759']['_props']['ConflictingItems']");
+//}
+
 /* I decided to use JSONpaths fed into the SelectTokens() method as it is reasonably readable, and string interpolation will allow for flexibility. Useful links:
  * https://www.newtonsoft.com/json/help/html/QueryJsonSelectTokenJsonPath.htm
  * https://goessner.net/articles/JsonPath/index.html#e2
@@ -83,7 +92,7 @@ string[] traderNames =
       "Prapor", "Therapist", "Fence", "Skier",
       "Peacekeeper","Mechanic", "Ragman", "Jaeger"
     };
-int[] traderLevels = { 1 };
+int[] traderLevels = { 1, 2 };
 
 List<string> traderMask = new List<string>();
 
@@ -118,14 +127,13 @@ foreach (var id in weaponIDs)
 // Setup of the input from the JSONs
 Database database = Database.FromFile("bsg-data.json", false);
 
-// Split the DB between mods and weapons
+// Split the DB between mods, weapons and ammo
 IEnumerable<Item> AllMods = database.GetItems(m => m is WeaponMod);
 IEnumerable<Item> AllWeapons = database.GetItems(m => m is Weapon);
 
 IEnumerable<Item> AllAmmo = database.GetItems(m => m is Ammo);
 
-//Simple.inspectList<CombMuzzleDevice>(AllMods.OfType<WeaponMod>().ToList());
-//Environment.Exit(0);
+
 
 
 // A janky workaround maybe
@@ -188,7 +196,7 @@ bool silencers = false;
 List<Type> ModsFilter = new List<Type>() {
     typeof(IronSight), typeof(CompactCollimator), typeof(Collimator),
     typeof(OpticScope), typeof(NightVision), typeof(ThermalVision),
-    typeof(AssaultScope), typeof(SpecialScope),
+    typeof(AssaultScope), typeof(SpecialScope), typeof(Magazine),
     typeof(CombTactDevice), typeof(Flashlight), typeof(LaserDesignator),
     typeof(Mount)};
 
@@ -202,6 +210,14 @@ var FilteredMods = AllMods.Where(mod => !ModsFilter.Contains(mod.GetType())).ToL
 IEnumerable<Mount> Mounts = AllMods.OfType<Mount>();
 var MountsFiltered = Mounts.Where(mod => mod.Slots.Any(slot=> slot.Name == "mod_foregrip")).Cast<Item>().ToArray();
 FilteredMods.AddRange(MountsFiltered);
+
+
+IEnumerable<Item> bastards = FilteredMods.Where(m => m.ConflictingItems.Count > 0);
+var hera = bastards.FirstOrDefault(x => x.Id == "5a33e75ac4a2826c6e06d759");
+var tester = processedWeapons.FirstOrDefault(x => x.Name.Contains("M4A1"));  // In case of need to debug, break glass
+var testResult = Recursion.HeadToHead((WeaponMod)hera, FilteredMods.OfType<WeaponMod>(), (Weapon) tester);
+//Simple.inspectList(bastards.OfType<WeaponMod>().ToList(), FilteredMods.OfType<WeaponMod>().ToList());
+Environment.Exit(0);
 
 Console.WriteLine("Num of mods: " + FilteredMods.Count());
 Console.WriteLine("Num of guns: " + AllWeapons.Count());
@@ -241,22 +257,23 @@ foreach (Weapon rifle in assaultRifles)
         recoils.Add(recoil_weapon);
 }
 
-ergos = ergos.FindAll(x => x.Item2.PenetrationPower > 20);
-recoils = recoils.FindAll(x => x.Item2.PenetrationPower > 20);
+int MinimumPenetration = 20;
+ergos = ergos.FindAll(x => x.Item2.PenetrationPower > MinimumPenetration);
+recoils = recoils.FindAll(x => x.Item2.PenetrationPower > MinimumPenetration);
 
 ergos = ergos.OrderByDescending(x => MyExtensions.recursiveErgoWeapon(x.Item1)).ToList();
 recoils = recoils.OrderBy(x => MyExtensions.recursiveRecoilWeapon(x.Item1)).ToList();
 
-Console.WriteLine("");
-Console.WriteLine("");
-Console.WriteLine("==== ERGO ====");
-Console.WriteLine("");
+//Console.WriteLine("");
+//Console.WriteLine("");
+//Console.WriteLine("==== ERGO ====");
+//Console.WriteLine("");
 
-var printListErgos = ergos.Take(4).ToList();
-foreach (var rifle in printListErgos)
-{
-    MyExtensions.recursivePrint(rifle);
-}
+//var printListErgos = ergos.Take(7).ToList();
+//foreach (var rifle in printListErgos)
+//{
+//    MyExtensions.recursivePrint(rifle);
+//}
 
 Console.WriteLine("");
 Console.WriteLine("");
@@ -264,7 +281,7 @@ Console.WriteLine("==== RECOIL ====");
 Console.WriteLine("");
 
 
-var printListRecoils = recoils.Take(4).ToList();
+var printListRecoils = recoils.Take(10).ToList();
 foreach (var rifle in printListRecoils)
 {
     MyExtensions.recursivePrint(rifle);
