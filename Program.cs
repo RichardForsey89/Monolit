@@ -13,8 +13,7 @@ using System.Collections;
 using TarkovToy.ExtensionMethods;
 using System.Globalization;
 using System.Diagnostics;
-
-
+using System.Threading.Tasks;
 
 CultureInfo ci = new CultureInfo("ru-RU");
 Console.OutputEncoding = System.Text.Encoding.Unicode;
@@ -213,8 +212,16 @@ FilteredMods.AddRange(MountsFiltered);
 
 
 IEnumerable<Item> bastards = FilteredMods.Where(m => m.ConflictingItems.Count > 0);
-var hera = bastards.FirstOrDefault(x => x.Id == "5a33e75ac4a2826c6e06d759");
-var tester = processedWeapons.FirstOrDefault(x => x.Name.Contains("M4A1"));  // In case of need to debug, break glass
+//foreach(var bastard in bastards)
+//{
+
+//}
+
+//var hera = bastards.FirstOrDefault(x => x.Id == "5a33e75ac4a2826c6e06d759");//ar15
+//var tester = processedWeapons.FirstOrDefault(x => x.Name.Contains("M4A1"));
+var hera = bastards.FirstOrDefault(x => x.Id == "619b69037b9de8162902673e");//ak74
+var tester = processedWeapons.FirstOrDefault(x => x.Name.Contains("AK-74N"));  // In case of need to debug, break glass
+
 var testResult = Recursion.HeadToHead((WeaponMod)hera, FilteredMods.OfType<WeaponMod>(), (Weapon) tester);
 //Simple.inspectList(bastards.OfType<WeaponMod>().ToList(), FilteredMods.OfType<WeaponMod>().ToList());
 Environment.Exit(0);
@@ -242,6 +249,8 @@ var mods = FilteredMods.OfType<WeaponMod>();
 List<(Weapon, Ext_Ammo)> ergos = new ();
 List<(Weapon, Ext_Ammo)> recoils = new ();
 
+
+// Try making this into parallel.foreach, or other things like List<T> to ConcurrentBag<T> 
 foreach (Weapon rifle in assaultRifles)
 {
     Weapon assaultRifle_e = (Weapon)Recursion.recursiveFit((CompoundItem) rifle, mods, "ergo");

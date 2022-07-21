@@ -165,7 +165,11 @@ namespace TarkovToy.ExtensionMethods
 
         public static bool HeadToHead(WeaponMod excluder, IEnumerable<WeaponMod> mods, Weapon CI)
         {
-            // Clone the CI into two dummies
+            Console.WriteLine(CI.Name);
+            Console.WriteLine(excluder.Name);
+            List<WeaponMod> allmods = mods.ToList();
+
+            // Clone the CI into two dummies <-Actually just need one.
             Weapon excluder_dummy = new(); excluder_dummy = JankyCloner(CI);
             Weapon candidate_dummy = new(); candidate_dummy = JankyCloner(CI);
 
@@ -173,15 +177,30 @@ namespace TarkovToy.ExtensionMethods
             excluder_dummy.Slots.ForEach(x=>x.ContainedItem=null); 
             candidate_dummy.Slots.ForEach(x => x.ContainedItem = null);
 
-            // Attach the excluder to the dummy
+            // Need to get the oppurtunity slot (heh) options and remove the excluder from it
+            // Possibly need to remove other excluders <- YES, fucking ADAR 2-15 stock.....
             var target = excluder_dummy.Slots.FirstOrDefault(x => x.Filters[0].Whitelist.Contains(excluder.Id));
-            if (target != null)
-                //target.ContainedItem = excluder; 
-            // Wait do we even need a dummy for this? We are comparing the excluder against the possibilities of its list
+            List<string> otherOptions = new();
+            if (target != null) { }
+                otherOptions = target.Filters[0].Whitelist.Where(x => !x.Equals(excluder.Id)).ToList();
             
+            excluder.ConflictingItems.AddRange(otherOptions); // Actually, I should be putting this into a seperate lsit rather than modifying the list
 
+            excluder.ConflictingItems.RemoveAll(x => allmods.Any(y => y.Id.Equals(x) && y.ConflictingItems.Count > 0)); // Get rid of anything that is also a conflicter
+            
             // Filter out any conflicting item IDs which aren't in the master list
-            excluder.ConflictingItems = excluder.ConflictingItems.Where(x => mods.Any(y => y.Id == x)).ToList();
+            excluder.ConflictingItems = excluder.ConflictingItems.Where(x => allmods.Any(y => y.Id == x)).ToList(); //wtf is this line
+
+            // Check that the list is what you expect
+            excluder.ConflictingItems = excluder.ConflictingItems.Where(x => allmods.Any(y => y.Id == x)).ToList(); // why does it repeat??
+            excluder.ConflictingItems.ForEach(y => {
+                Console.WriteLine(y);
+                var match = allmods.FirstOrDefault(z => z.Id == y);
+                if (match != null)
+                    Console.WriteLine("  " + match.Name + " type: " + match.GetType().Name);
+                else
+                    Console.WriteLine("ERROR: " + y + "NOT FOUND");
+            });
 
             int best_ergo = 0;
             float best_recoil = 0;
@@ -193,7 +212,9 @@ namespace TarkovToy.ExtensionMethods
             var e_d_res = getModTotals(excluder);
 
             if (c_d_res.t_ergo > e_d_res.t_ergo || c_d_res.t_recoil < e_d_res.t_recoil)
-                Console.WriteLine("bastard");
+                Console.WriteLine($"Excluder {excluder.Name} lost vs recoil combo e{e_d_res} vs c{c_d_res}");
+            else
+                Console.WriteLine($"Excluder {excluder.Name} WINS! vs recoil combo e{e_d_res} vs c{c_d_res}");
 
             candidate_dummy = hacky_addBaseAttachments(candidate_dummy, excluder.ConflictingItems, mods, "ergo");
 
@@ -201,10 +222,18 @@ namespace TarkovToy.ExtensionMethods
             e_d_res = getModTotals(excluder);
 
             if (c_d_res.t_ergo > e_d_res.t_ergo || c_d_res.t_recoil < e_d_res.t_recoil)
-                Console.WriteLine("shit");
+                Console.WriteLine($"Excluder {excluder.Name} lost vs ergo combo e{e_d_res} vs c{c_d_res}");
+            else
+                Console.WriteLine($"Excluder {excluder.Name} WINS! vs ergo combo e{e_d_res} vs c{c_d_res}");
 
             // Just need to set this up so that it correctly has a process flow control bertween recoil and ergo.
-            // Need to check that the limited list is accurate and that an open list wouldn't be better.
+            // Need to check that the limited list is accurate and that an open list wouldn't be better. <-Limited is fine once you account for the selfslot items
+
+            // For the main loop need to consider how it will interact
+            // Perhaps the way to go would be to call a method which removes any offending item that has already been placed, and re-runs the fitting with the
+            // exclusion list applied. The other half would of course be to make further fitting choices consider the exclusion list. Perhaps the way to do this
+            // would be to just simply remove the offending items from the master mod list? wouldn't need to update the main method that way and
+            // accomplishes the goal.
             return false;
         }
         public static Weapon hacky_addBaseAttachments(this Weapon weapon, List<string> baseAttachments, IEnumerable<WeaponMod> mods, string mode)
